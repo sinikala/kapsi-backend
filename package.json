@@ -1,0 +1,28 @@
+{
+  "name": "backend",
+  "version": "0.0.1",
+  "description": "Backend for [Kapsi](https://github.com/sinikala/kapsi) web application",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sinikala/kapsi-backend.git"
+  },
+  "author": "sinikala",
+  "license": "CC-BY-NC-SA-3.0",
+  "bugs": {
+    "url": "https://github.com/sinikala/kapsi-backend/issues"
+  },
+  "homepage": "https://github.com/sinikala/kapsi-backend#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
