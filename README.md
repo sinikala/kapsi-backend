@@ -1,2 +1,2 @@
 # kapsi-backend
-Backend for Kapsi web application
+Backend for [Kapsi](https://github.com/sinikala/kapsi) web application
