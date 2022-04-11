@@ -1,9 +1,9 @@
-import React from 'react';
-import { useState } from 'react';
+import React from 'react'
+import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Container, Divider, Card, CardMedia, Typography, } from '@mui/material'
 
-import theme from '../theme/theme';
+import theme from '../theme/theme'
 
 const containerStyle = {
   backgroundColor: theme.palette.secondary.main,
@@ -16,7 +16,7 @@ const containerStyle = {
 
 const ParkInfo = () => {
   const park = useSelector(state => state.activePark)
-  const [showCredit, setShowCredit] = useState(false);
+  const [showCredit, setShowCredit] = useState(false)
 
 
   if (park) {
@@ -65,4 +65,3 @@ const ParkInfo = () => {
 
 export default ParkInfo
 
-//park, locatedInLabel,coordinates, label, image, inceptionYear: 

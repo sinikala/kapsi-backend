@@ -1,12 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
-import { ThemeProvider } from '@mui/material/styles';
-import theme from './theme/theme';
-import App from './App';
+import { ThemeProvider } from '@mui/material/styles'
+import theme from './theme/theme'
+import App from './App'
 
-import activeParkReducer from './state/activePark';
+import activeParkReducer from './state/activePark'
 
 
 const store = configureStore({
@@ -22,5 +22,5 @@ ReactDOM.render(
     </ThemeProvider>
   </Provider>,
   document.getElementById('root')
-);
+)
 

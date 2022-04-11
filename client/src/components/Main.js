@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'
 import { Grid, } from '@mui/material'
 
-import Map from './Map';
-import NavBar from './NavBar';
-import ParkInfo from './ParkInfo';
+import Map from './Map'
+import NavBar from './NavBar'
+import ParkInfo from './ParkInfo'
 
 const gridStyle = {
   padding: 2

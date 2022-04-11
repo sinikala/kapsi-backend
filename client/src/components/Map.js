@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import { Container } from '@mui/material'
@@ -66,4 +66,4 @@ const Map = () => {
 }
 
 
-export default Map;
+export default Map

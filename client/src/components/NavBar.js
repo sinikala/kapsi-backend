@@ -1,7 +1,7 @@
-import React from 'react';
-import MenuIcon from '@mui/icons-material/Menu';
+import React from 'react'
+import MenuIcon from '@mui/icons-material/Menu'
 import { AppBar, Button, IconButton, Toolbar, Typography } from '@mui/material'
-import { Box } from '@mui/system';
+import { Box } from '@mui/system'
 
 
 
