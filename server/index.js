@@ -3,6 +3,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const morgan = require('morgan')
+const middleware = require('./utils/middleware')
 //const path = require('path');
 
 const Park = require('./models/park')
@@ -64,6 +65,10 @@ app.get('/api/parks', (req, res) => {
     res.json(parks)
   })
 })
+
+
+app.use(middleware.unknownEndpoint)
+app.use(middleware.errorHandler)
 
 const PORT = process.env.PORT
 app.listen(PORT, () => {
