@@ -69,3 +69,26 @@ server.listen(config.PORT, () => {
 
 // const queryDispatcher = new SPARQLQueryDispatcher( endpointUrl );
 // queryDispatcher.query( sparqlQuery ).then( console.log );
+
+
+
+
+
+
+//SELECT ?park ?label ?cos  (group_concat( ?locatedIn; separator=', ') AS ?places) (MIN(year(xsd:dateTime(?inception))) as ?inceptionYear) (SAMPLE(?image) AS ?photo)
+// WHERE {
+//   VALUES ?type {wd:Q14545628 wd:Q14545620}
+//   ?park wdt:P814  ?type;
+//        wdt:P17 wd:Q33 ;
+//          wdt:P625 ?cos ;
+//         rdfs:label ?label.
+//   OPTIONAL {?park wdt:P18 ?image.}
+//    OPTIONAL {?park wdt:P131 ?locatedIn.}
+//    OPTIONAL {?park wdt:P571 ?inception.}
+//
+//   FILTER(LANG(?label) = 'fi').
+//  FILTER(STRENDS(?label, 'ansallispuisto')).
+//    SERVICE wikibase:label { bd:serviceParam wikibase:language 'fi' }
+//  }
+//  #ORDER BY ?label
+//group by ?park ?label ?cos
