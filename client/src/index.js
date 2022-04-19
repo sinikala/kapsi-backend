@@ -8,11 +8,13 @@ import theme from './theme/theme'
 import App from './App'
 
 import activeParkReducer from './state/activePark'
+import userReducer from './state/user'
 
 
 const store = configureStore({
   reducer: {
-    activePark: activeParkReducer
+    activePark: activeParkReducer,
+    user: userReducer
   }
 })
 

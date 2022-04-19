@@ -3,13 +3,15 @@ import { useState } from 'react'
 import { Formik, Form, Field } from 'formik'
 import * as yup from 'yup'
 import { useNavigate } from 'react-router-dom'
-import Error from './Error'
+import { useDispatch } from 'react-redux'
 import {
   Box, Typography
 } from '@mui/material'
-import theme from '../theme/theme'
 
+import theme from '../theme/theme'
 import { login } from '../services/login'
+import Error from './Error'
+import { setUser } from '../state/user'
 
 
 const boxStyle = {
@@ -56,18 +58,21 @@ const validationSchema = yup.object().shape({
 const Login = () => {
   const [serverError, setServerError] = useState('')
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const handleLogin = async (values, { resetForm }) => {
     try {
       const user = await login(values)
       console.log('user', user)
+      dispatch(setUser(user))
+      window.localStorage.setItem(
+        'loggedAppUser', JSON.stringify(user)
+      )
       resetForm()
       navigate('/')
-      //aseta käyttäjä tilanhallintaan
-      //aseta token (user.token)
-      //ohjaa etusivulle
+
       //optio tunnusten luomiselle
-      // Kirjaudu nappi,--> kirjaudu ulos
+
     } catch (exception) {
       setServerError('Virheelliset tunnukset')
       setTimeout(() => {
