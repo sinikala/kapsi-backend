@@ -10,7 +10,7 @@ const activeParkSlice = createSlice({
     setActivePark(state, action) {
       return action.payload
     },
-    setParkNull(state, action) {
+    setParkNull() {
       return null
     }
   }

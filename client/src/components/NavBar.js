@@ -1,20 +1,28 @@
 import React from 'react'
 import MenuIcon from '@mui/icons-material/Menu'
-import { AppBar, Button, IconButton, Toolbar, Typography } from '@mui/material'
+import { AppBar, IconButton, Toolbar, Typography } from '@mui/material'
 import { Box } from '@mui/system'
+import { Link } from 'react-router-dom'
 
-
-
+const linkStyle = {
+  textDecoration: 'none',
+  color: 'white'
+}
+//style={{ textDecoration: 'none', color: 'white' }}
 
 const NavBar = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position='static'>
         <Toolbar>
-          <Typography
-            variant='h3' sx={{ flexGrow: 1 }}>
-            KAPSI
-          </Typography>
+          <Box sx={{ flexGrow: 1 }}>
+            <Link to='/' style={linkStyle}>
+              <Typography
+                variant='h3'>
+                KAPSI
+              </Typography>
+            </Link>
+          </Box>
 
           <IconButton
             size="large"
@@ -25,7 +33,10 @@ const NavBar = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Button color="inherit">Kirjaudu</Button>
+
+          <Link to='/login' style={linkStyle}>
+            Kirjaudu
+          </Link>
         </Toolbar>
       </AppBar>
     </Box>
