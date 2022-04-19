@@ -7,7 +7,7 @@ const theme = createTheme({
     },
     secondary: {
       main: '#FAF0E6'
-    }
+    },
   }
 })
 

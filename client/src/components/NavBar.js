@@ -1,14 +1,12 @@
 import React from 'react'
 import MenuIcon from '@mui/icons-material/Menu'
-import { AppBar, IconButton, Toolbar, Typography } from '@mui/material'
-import { Box } from '@mui/system'
+import { AppBar, Box, IconButton, Toolbar, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 
 const linkStyle = {
   textDecoration: 'none',
   color: 'white'
 }
-//style={{ textDecoration: 'none', color: 'white' }}
 
 const NavBar = () => {
   return (
@@ -35,7 +33,9 @@ const NavBar = () => {
           </IconButton>
 
           <Link to='/login' style={linkStyle}>
-            Kirjaudu
+            <Typography variant='button'>
+              Kirjaudu
+            </Typography>
           </Link>
         </Toolbar>
       </AppBar>
