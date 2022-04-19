@@ -6,6 +6,7 @@ import {
 import Main from './components/Main'
 import NavBar from './components/NavBar'
 import Login from './components/Login'
+import SignUp from './components/SignUp'
 
 const App = () => (
   <Router>
@@ -14,6 +15,7 @@ const App = () => (
     </div>
     <Routes>
       <Route path='/login' element={<Login />} />
+      <Route path='/signup' element={<SignUp />} />
       <Route path='/' element={<Main />} />
     </Routes>
   </Router>

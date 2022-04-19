@@ -2,14 +2,14 @@ import React from 'react'
 import { useState } from 'react'
 import { Formik, Form, Field } from 'formik'
 import * as yup from 'yup'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import {
-  Box, Grid, Typography
+  Box, Typography
 } from '@mui/material'
 
 import theme from '../theme/theme'
-import { login } from '../services/authorization'
+import { login, signUp } from '../services/authorization'
 import Error from './Error'
 import { setUser } from '../state/user'
 
@@ -36,7 +36,9 @@ const fieldStyle = {
 
 const initialValues = {
   username: '',
-  password: ''
+  name: '',
+  password: '',
+  passwordConfirm: ''
 }
 
 const validationSchema = yup.object().shape({
@@ -46,25 +48,42 @@ const validationSchema = yup.object().shape({
       .min(3, 'Username must contain at least 3 characters')
       .max(30, 'Username can contain up to 30 characters')
       .required('Username is required'),
+  name:
+    yup
+      .string()
+      .min(1, 'Name must contain at least 1 character')
+      .max(60, 'Name can contain up to 60 characters')
+      .required('Name is required'),
   password:
     yup
       .string()
       .min(3, 'Password must contain at least 3 characters')
       .required('Password is required'),
+  passwordConfirm:
+    yup
+      .string()
+      // eslint-disable-next-line quotes
+      .oneOf([yup.ref('password'), null], "Password and password confirm don't match")
+      .required('Password confirmation is required')
 })
 
 
 
-const Login = () => {
+const SignUp = () => {
   const [serverError, setServerError] = useState('')
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const handleLogin = async (values, { resetForm }) => {
+  const handleSignUp = async (values, { resetForm }) => {
+    const { username, name, password } = values
+
     try {
-      const user = await login(values)
-      console.log('user', user)
+      const createdUser = await signUp({ username: username, name: name, password: password })
+      console.log('user', createdUser)
+
+      const user = await login({ username: createdUser.username, password: password })
       dispatch(setUser(user))
+      window.localStorage.removeItem('loggedAppUser')
       window.localStorage.setItem(
         'loggedAppUser', JSON.stringify(user)
       )
@@ -72,7 +91,7 @@ const Login = () => {
       navigate('/')
 
     } catch (exception) {
-      setServerError('Virheelliset tunnukset')
+      setServerError('Käyttäjänimi varattu')
       setTimeout(() => {
         setServerError('')
       }, 5000)
@@ -81,25 +100,13 @@ const Login = () => {
 
   return (
     <Box sx={boxStyle}>
-      <Grid container spacing={14}>
-        <Grid item >
-          <Typography variant='h5'>
-            Kirjaudu sisään
-          </Typography>
-        </Grid>
-        <Grid item >
-          <Link to='/signup'>
-            <Typography variant='subtitle1'>
-              Luo uudet käyttäjätunnukset
-            </Typography>
-          </Link>
-        </Grid>
-      </Grid>
-
+      <Typography variant='h5'>
+        Luo käyttäjätunnukset
+      </Typography>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={handleLogin}
+        onSubmit={handleSignUp}
       >
         {({ errors, touched }) => (
           <Form>
@@ -110,21 +117,32 @@ const Login = () => {
                 : null}
             </Box>
             <Box >
+              <Field name="name" type='text' placeholder='Nimi' style={fieldStyle} />
+              {errors.name && touched.name
+                ? <Error message={errors.name} />
+                : null}
+            </Box>
+            <Box >
               <Field name="password" type='password' placeholder='Salasana' style={fieldStyle} />
               {errors.password && touched.password
                 ? <Error message={errors.password} />
                 : null}
             </Box>
-            <button type='submit' style={buttonStyle}>Kirjaudu</button>
+            <Box >
+              <Field name="passwordConfirm" type='password' placeholder='Toista salasana' style={fieldStyle} />
+              {errors.passwordConfirm && touched.passwordConfirm
+                ? <Error message={errors.passwordConfirm} />
+                : null}
+            </Box>
+            <button type='submit' style={buttonStyle}>Luo tunnukset</button>
           </Form>
         )}
       </Formik>
-      {
-        serverError &&
+      {serverError &&
         <Error message={serverError} />
       }
-    </Box >
+    </Box>
   )
 }
 
-export default Login
+export default SignUp
