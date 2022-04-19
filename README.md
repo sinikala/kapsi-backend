@@ -16,7 +16,7 @@ National park data gathered from [Wikidata](https://www.wikidata.org/wiki/Wikida
 
 Linking to [luontoon.fi](https://www.luontoon.fi/) will happen.
 
-
+Custom markers from [leaflet-color-markers](https://github.com/pointhi/leaflet-color-markers).
 
 -------
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">

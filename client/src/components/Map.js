@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
+import { MapContainer, Marker, TileLayer } from 'react-leaflet'
 import { Container } from '@mui/material'
+import Leaflet from 'leaflet'
 import '../app.css'
 import theme from '../theme/theme'
 
@@ -16,6 +17,19 @@ const containerStyle = {
   borderColor: theme.palette.primary.main
 }
 
+const MarkerIcon = Leaflet.Icon.extend({
+  options: {
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+  }
+})
+
+const blueIcon = new MarkerIcon({ iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png' })
+const orangeIcon = new MarkerIcon({ iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-orange.png' })
+//const greenIcon = new MarkerIcon({ iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png' })
 
 const Map = () => {
   const [parks, setParks] = useState([])
@@ -30,6 +44,15 @@ const Map = () => {
   const dispatch = useDispatch()
   const activePark = useSelector(state => state.activePark)
 
+  const chooseIcon = (label) => {
+    if (activePark && activePark.label === label) {
+      return orangeIcon
+    }
+    else {
+      return blueIcon
+    }
+  }
+
   return (
     <Container fixed disableGutters sx={containerStyle}>
       <MapContainer center={[64.225, 27.733333]} zoom={6}>
@@ -41,6 +64,8 @@ const Map = () => {
           <Marker
             key={park.park}
             position={park.coordinates}
+            title={park.label}
+            icon={chooseIcon(park.label)}
             eventHandlers={{
               click: () => {
                 dispatch(setActivePark(park))
@@ -48,18 +73,7 @@ const Map = () => {
             }}
           />
         ))}
-        {activePark && (
-          <Popup
-            position={activePark.coordinates}
-            onClose={() => {
-              dispatch(setActivePark(null))
-            }}
-          >
-            <div>
-              <h2>{activePark.label}</h2>
-            </div>
-          </Popup>
-        )}
+
       </MapContainer>
     </Container>
   )

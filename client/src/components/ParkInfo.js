@@ -1,9 +1,11 @@
 import React from 'react'
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
-import { Container, Divider, Card, CardMedia, Typography, } from '@mui/material'
+import { useSelector, useDispatch } from 'react-redux'
+import { Container, Card, CardContent, CardHeader, CardMedia, IconButton, Typography, } from '@mui/material'
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded'
 
 import theme from '../theme/theme'
+import { setActivePark } from '../state/activePark'
 
 const containerStyle = {
   backgroundColor: theme.palette.secondary.main,
@@ -15,39 +17,50 @@ const containerStyle = {
 
 
 const ParkInfo = () => {
+  const dispatch = useDispatch()
   const park = useSelector(state => state.activePark)
   const [showCredit, setShowCredit] = useState(false)
 
 
   if (park) {
     return (
-      <Container sx={containerStyle}>
-        <Typography color='primary' variant='h4' gutterBottom={true}>
-          {park.label}
-        </Typography>
-        <Divider variant="middle" ></Divider>
-        <Typography color='primary' variant='subtitle' component="div" gutterBottom={true}>
-          Sijainti: {park.locatedInLabel}
-        </Typography>
-        <Typography color='primary' variant='subtitle' component="div" gutterBottom={true}>
-          Perustettu: {park.inceptionYear}
-        </Typography>
-        <Card >
-          <CardMedia
-            component="img"
-            height="140"
-            image={park.image}
-            alt="park image"
-            onMouseOver={() => setShowCredit(true)}
-            onMouseOut={() => setShowCredit(false)}
-          />
-        </Card>
+      <Card sx={containerStyle}>
+        <CardHeader
+          title={park.label}
+          titleTypographyProps={{
+            variant: 'h4',
+            color: 'primary',
+            gutterBottom: true
+          }}
+          action={
+            <IconButton aria-label='close' onClick={() => { dispatch(setActivePark(null)) }}>
+              <CloseRoundedIcon />
+            </IconButton>
+          }
+        />
+        <CardContent>
+          <Typography variant='subtitle' color='primary' component="div" gutterBottom={true}>
+            Sijainti: {park.locatedInLabel}
+          </Typography>
+
+          <Typography color='primary' variant='subtitle' component="div" gutterBottom={true}>
+            Perustettu: {park.inceptionYear}
+          </Typography>
+        </CardContent>
+        <CardMedia
+          component="img"
+          height="140"
+          image={park.image}
+          alt="park image"
+          onMouseOver={() => setShowCredit(true)}
+          onMouseOut={() => setShowCredit(false)}
+        />
         {showCredit &&
           <Typography color='primary' variant='caption'>
             Source: http://commons.wikimedia.org/
           </Typography>
         }
-      </Container>
+      </Card>
     )
   }
   else {
@@ -59,9 +72,8 @@ const ParkInfo = () => {
       </Container>
     )
   }
-
-
 }
 
 export default ParkInfo
 
+//          <Divider variant="middle" ></Divider>
