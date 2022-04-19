@@ -1,5 +1,6 @@
 const parkRouter = require('express').Router()
 const Park = require('../models/park')
+const logger = require('../utils/logger')
 
 
 const rawData = [
@@ -30,12 +31,12 @@ const data = Array.from(new Set(rawData.map(park => park.park)))
 
 Park.estimatedDocumentCount().then(count => {
   if (count === 0) {
-    console.log('No park data found. Seeding the database.')
+    logger.info('No park data found. Seeding the database.')
     data.map(park => {
       const p = new Park(park)
       p.save().then(savedPark => { })//console.log(savedPark.label))
     })
-    console.log('Database ready.')
+    logger.info('Database ready.')
   }
 })
 
