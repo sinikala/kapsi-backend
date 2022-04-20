@@ -62,6 +62,7 @@ const Map = () => {
         />
         {parks.map(park => (
           <Marker
+            id='marker'
             key={park.park}
             position={park.coordinates}
             title={park.label}
