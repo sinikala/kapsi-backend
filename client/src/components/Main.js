@@ -1,8 +1,9 @@
 import React from 'react'
-import { Grid, } from '@mui/material'
+import { Grid, Stack } from '@mui/material'
 
 import Map from './Map'
 import ParkInfo from './ParkInfo'
+import UserParkCard from './UserParkCard'
 
 const gridStyle = {
   padding: 2
@@ -15,7 +16,10 @@ const Main = () => {
         <Map />
       </Grid>
       <Grid item xs={6} md={4}>
-        <ParkInfo />
+        <Stack spacing={2}>
+          <ParkInfo />
+          <UserParkCard />
+        </Stack>
       </Grid>
     </Grid>
   )

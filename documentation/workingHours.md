@@ -9,9 +9,10 @@
 | 8.4. |   2   | Move backend and frontend to the same repository, reorganization |
 | 11.4.|  2,5  | Implement MongoDB, functions for seeding and retrieving park data, eslint for back and front|
 | 12.4.|  2,5  | Backend: refactoring, more middleware, unit tests for park data |
-| 19.4.|  9  | User creation (client, server, integration tests), login (client, server, integration tests), map & park info refactoring (dynamic custom markers) |
+| 19.4.|  9    | User creation (client, server, integration tests), login (client, server, integration tests), map & park info refactoring (dynamic custom markers) |
+|20.4. | 4,5   | Frontend testing (form unit tests, 2e2 cypress tests for existing features), write user manual, start on user park note |
 ||||
-| total| 31  | |
+| total| 35,5  | |
 
 
 
