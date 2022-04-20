@@ -54,12 +54,12 @@ const NavBar = () => {
           </IconButton>
 
           {(!loggedUserJSON)
-            ? <Link to='/login' style={linkStyle}>
+            ? <Link id='login-link' to='/login' style={linkStyle}>
               <Typography variant='button'>
                 Kirjaudu
               </Typography>
             </Link>
-            : <Button color='info' onClick={handleLogout} >
+            : <Button id='logout-button' color='info' onClick={handleLogout} >
               Kirjaudu ulos
             </Button>
           }

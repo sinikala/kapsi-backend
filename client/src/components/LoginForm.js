@@ -53,18 +53,18 @@ const LoginForm = ({ handleLogin }) => {
       {({ errors, touched }) => (
         <Form>
           <Box >
-            <Field name="username" type='text' placeholder='Käyttäjätunnus' style={fieldStyle} />
+            <Field id='username' name="username" type='text' placeholder='Käyttäjätunnus' style={fieldStyle} />
             {errors.username && touched.username
               ? <Error message={errors.username} />
               : null}
           </Box>
           <Box >
-            <Field name="password" type='password' placeholder='Salasana' style={fieldStyle} />
+            <Field id='password' name="password" type='password' placeholder='Salasana' style={fieldStyle} />
             {errors.password && touched.password
               ? <Error message={errors.password} />
               : null}
           </Box>
-          <button type='submit' style={buttonStyle}>Kirjaudu</button>
+          <button id='login-button' type='submit' style={buttonStyle}>Kirjaudu</button>
         </Form>
       )}
     </Formik>

@@ -7,6 +7,7 @@ With this app you can research Finnish national parks, plan your trips, make not
 
 
 [Work hours](./documentation/workingHours.md)
+[Manual](./documentation/manual.md)
 
 
 

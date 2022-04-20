@@ -52,7 +52,7 @@ const Login = () => {
           </Typography>
         </Grid>
         <Grid item >
-          <Link to='/signup'>
+          <Link id='signup-link' to='/signup'>
             <Typography variant='subtitle1'>
               Luo uudet käyttäjätunnukset
             </Typography>

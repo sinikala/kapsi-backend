@@ -69,30 +69,30 @@ const SignUpForm = ({ handleSignUp }) => {
       {({ errors, touched }) => (
         <Form>
           <Box >
-            <Field name="username" type='text' placeholder='Käyttäjätunnus' style={fieldStyle} />
+            <Field id='username' name="username" type='text' placeholder='Käyttäjätunnus' style={fieldStyle} />
             {errors.username && touched.username
               ? <Error message={errors.username} />
               : null}
           </Box>
           <Box >
-            <Field name="name" type='text' placeholder='Nimi' style={fieldStyle} />
+            <Field id='name' name="name" type='text' placeholder='Nimi' style={fieldStyle} />
             {errors.name && touched.name
               ? <Error message={errors.name} />
               : null}
           </Box>
           <Box >
-            <Field name="password" type='password' placeholder='Salasana' style={fieldStyle} />
+            <Field id='password' name="password" type='password' placeholder='Salasana' style={fieldStyle} />
             {errors.password && touched.password
               ? <Error message={errors.password} />
               : null}
           </Box>
           <Box >
-            <Field name="passwordConfirm" type='password' placeholder='Toista salasana' style={fieldStyle} />
+            <Field id='passwordConfirm' name="passwordConfirm" type='password' placeholder='Toista salasana' style={fieldStyle} />
             {errors.passwordConfirm && touched.passwordConfirm
               ? <Error message={errors.passwordConfirm} />
               : null}
           </Box>
-          <button type='submit' style={buttonStyle}>Luo tunnukset</button>
+          <button id='signup-button' type='submit' style={buttonStyle}>Luo tunnukset</button>
         </Form>
       )}
     </Formik>

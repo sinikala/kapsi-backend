@@ -1,25 +1,34 @@
-describe('Kapsi', function () {
+describe('Kapsi front page', function () {
   beforeEach(function () {
     cy.visit('http://localhost:3000')
   })
 
-  it('front page can be opened', function () {
+  it('can be opened', function () {
     cy.contains('KAPSI')
   })
 
-  it('front page contains a map with no park selected', function () {
+  it('contains a map with no park selected', function () {
     cy.contains('Leaflet')
     cy.contains('Valitse kansallispuisto kartalta')
   })
 
-  it('a marker can be clicked for park details', function () {
+  it('map marker can be clicked for park details and the marker changes color', function () {
+    cy.get('img[src*="icon-orange.png"]').should('not.exist')
     cy.get('[class^=leaflet-marker-icon]').first().click()
     cy.contains('Sijainti:')
+    cy.get('img[src*="icon-orange.png"]')
   })
 
   it('park details can be closed', function () {
     cy.get('[class^=leaflet-marker-icon').first().click()
     cy.get('[aria-label="close"]').click()
     cy.contains('Valitse kansallispuisto kartalta')
+    cy.get('img[src*="icon-orange.png"]').should('not.exist')
   })
+
+  it.only('contains a link to sign in form', function () {
+    cy.get('#login-link').click()
+    cy.contains('Kirjaudu sisään')
+  })
+
 })
