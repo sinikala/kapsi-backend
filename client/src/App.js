@@ -7,7 +7,7 @@ import Main from './components/Main'
 import NavBar from './components/NavBar'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
-import ParkNote from './components/ParkNote'
+import UserParkNotePage from './components/UserParkNotePage'
 
 const App = () => (
   <Router>
@@ -17,7 +17,7 @@ const App = () => (
     <Routes>
       <Route path='/login' element={<Login />} />
       <Route path='/signup' element={<SignUp />} />
-      <Route path='/parknote/:label' element={<ParkNote />} />
+      <Route path='/parknote/:label' element={<UserParkNotePage />} />
       <Route path='/' element={<Main />} />
     </Routes>
   </Router>

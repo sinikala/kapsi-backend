@@ -6,16 +6,18 @@ import ParkInfo from './ParkInfo'
 import UserParkCard from './UserParkCard'
 
 const gridStyle = {
-  padding: 2
+  padding: 2,
+  //marginRight: 4,
+  //marginLeft: 4
 }
 
 const Main = () => {
   return (
     <Grid container spacing={1} sx={gridStyle}>
-      <Grid item xs={6} md={8}>
+      <Grid item xs={6} md={6}>
         <Map />
       </Grid>
-      <Grid item xs={6} md={4}>
+      <Grid item xs={6} md={6} >
         <Stack spacing={2}>
           <ParkInfo />
           <UserParkCard />

@@ -49,7 +49,10 @@ const ParkInfo = () => {
         </CardContent>
         <CardMedia
           component="img"
-          height="140"
+          style={{
+            maxHeight: '240px',
+            width: '100%'
+          }}
           image={park.image}
           alt="park image"
           onMouseOver={() => setShowCredit(true)}
