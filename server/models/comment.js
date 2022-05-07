@@ -3,7 +3,16 @@ const mongoose = require('mongoose')
 const commentSchema = new mongoose.Schema({
   content: String,
   createdAt: Date,
-  public: Boolean
+  public: Boolean,
+  type: String,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  park: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Park'
+  }
 })
 
 commentSchema.set('toJSON', {
