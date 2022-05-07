@@ -5,7 +5,7 @@ import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Typography
 const UserNote = () => {
   const park = useSelector(state => state.activePark)
   const parkNote = useSelector(state => state.notes.filter(note => note.park === park.id))[0]
-  console.log('parknote', parkNote)
+  //console.log('parknote', parkNote)
 
   const [value, setValue] = useState('')
 

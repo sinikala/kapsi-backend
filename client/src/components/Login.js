@@ -29,7 +29,7 @@ const Login = () => {
   const handleLogin = async (values, { resetForm }) => {
     try {
       const user = await login(values)
-      console.log('user', user)
+      //console.log('user', user)
       dispatch(setUser(user))
       window.localStorage.setItem(
         'loggedAppUser', JSON.stringify(user)

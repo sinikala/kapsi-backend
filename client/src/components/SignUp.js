@@ -29,7 +29,7 @@ const SignUp = () => {
 
     try {
       const createdUser = await signUp({ username: username, name: name, password: password })
-      console.log('user', createdUser)
+      //console.log('user', createdUser)
 
       const user = await login({ username: createdUser.username, password: password })
       dispatch(setUser(user))
