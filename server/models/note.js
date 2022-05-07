@@ -16,6 +16,10 @@ const noteSchema = new mongoose.Schema({
       ref: 'Route'
     }
   ],
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }
 })
 
 noteSchema.set('toJSON', {
