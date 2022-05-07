@@ -36,7 +36,12 @@ const Login = () => {
       navigate('/')
 
     } catch (exception) {
-      setServerError('Virheelliset tunnukset')
+      if (exception.response.status === 500) {
+        setServerError('Ongelma palvelimella, yritä myöhemmin uudelleen')
+      } else {
+        setServerError('Virheelliset tunnukset')
+      }
+      console.log('error', exception)
       setTimeout(() => {
         setServerError('')
       }, 5000)

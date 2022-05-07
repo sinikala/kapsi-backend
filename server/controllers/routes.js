@@ -14,10 +14,18 @@ routeRouter.post('/', async (request, response) => {
   const { name, length, duration, visitedIn, difficulty,
     scenery, facilities, comment, noteId, parkId } = request.body
 
-  const decodedToken = tokenIsValid(request)
-  if (!decodedToken.id) {
+  let decodedToken = ''
+
+  try {
+    decodedToken = tokenIsValid(request)
+    if (!decodedToken.id) {
+      return response.status(401).json({
+        error: 'token missing or invalid'
+      })
+    }
+  } catch {
     return response.status(401).json({
-      error: 'token missing or invalid'
+      error: 'token expired'
     })
   }
 
@@ -38,9 +46,7 @@ routeRouter.post('/', async (request, response) => {
   })
 
   const savedRoute = await newRoute.save()
-
   note.routes = note.routes.concat(savedRoute._id)
-
   await note.save()
 
   response.status(201).json(savedRoute)

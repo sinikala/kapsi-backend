@@ -41,7 +41,11 @@ const SignUp = () => {
       navigate('/')
 
     } catch (exception) {
-      setServerError('Käyttäjänimi varattu')
+      if (exception.response.status === 500) {
+        setServerError('Ongelma palvelimella, yritä myöhemmin uudelleen')
+      } else {
+        setServerError('Käyttäjänimi varattu')
+      }
       setTimeout(() => {
         setServerError('')
       }, 5000)

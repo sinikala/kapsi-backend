@@ -1,9 +1,12 @@
 const mongoose = require('mongoose')
 
 const noteSchema = new mongoose.Schema({
-  parkUri: String,
   visitedIn: String,
   createdAt: Date,
+  park: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Park'
+  },
   comments: [
     {
       type: mongoose.Schema.Types.ObjectId,

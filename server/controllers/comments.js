@@ -13,10 +13,18 @@ commentRouter.get('/:userId', async (request, response) => {
 commentRouter.post('/', async (request, response) => {
   const { content, parkId, noteId, public, type } = request.body
 
-  const decodedToken = tokenIsValid(request)
-  if (!decodedToken.id) {
+  let decodedToken = ''
+
+  try {
+    decodedToken = tokenIsValid(request)
+    if (!decodedToken.id) {
+      return response.status(401).json({
+        error: 'token missing or invalid'
+      })
+    }
+  } catch {
     return response.status(401).json({
-      error: 'token missing or invalid'
+      error: 'token expired'
     })
   }
 
@@ -33,11 +41,7 @@ commentRouter.post('/', async (request, response) => {
   })
 
   const savedComment = await newComment.save()
-
-
   note.comments = note.comments.concat(savedComment._id)
-
-  console.log('note', note)
   await note.save()
 
   response.status(201).json(savedComment)

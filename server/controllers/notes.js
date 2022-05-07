@@ -10,35 +10,38 @@ noteRouter.get('/:userId', async (request, response) => {
 })
 
 noteRouter.post('/', async (request, response) => {
-  const { parkUri, visitedIn } = request.body
+  const { parkId, visitedIn } = request.body
 
-  const decodedToken = tokenIsValid(request)
-  if (!decodedToken.id) {
+  let decodedToken = ''
+
+  try {
+    decodedToken = tokenIsValid(request)
+    if (!decodedToken.id) {
+      return response.status(401).json({
+        error: 'token missing or invalid'
+      })
+    }
+  } catch {
     return response.status(401).json({
-      error: 'token missing or invalid'
+      error: 'token expired'
     })
   }
+
 
   const user = await User.findById(decodedToken.id)
 
   const newNote = new Note({
-    parkUri,
+    park: parkId,
     visitedIn,
     createdAt: new Date(),
     user: user._id
   })
 
   const savedNote = await newNote.save()
-
-
   user.notes = user.notes.concat(savedNote._id)
-
-  console.log('user', user)
   await user.save()
 
   response.status(201).json(savedNote)
-
 })
-
 
 module.exports = noteRouter
