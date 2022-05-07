@@ -20,7 +20,7 @@ Start the app by running ```npm start``` in root folder.
 Kapsi is now running. Open ```http://localhost:3001``` to view it in your browser.
 
 
-## Develompment
+## Development
 
 - SERVER: In root folder
     - Start the app by running:
