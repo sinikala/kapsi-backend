@@ -4,5 +4,5 @@ Authorization: bearer
 
 {
   "parkId": "",
-  "visitedIn": "5/2020"
+  "visitedIn": "7/2021"
 }
