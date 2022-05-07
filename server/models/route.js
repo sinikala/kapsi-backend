@@ -4,10 +4,19 @@ const routeSchema = new mongoose.Schema({
   name: String,
   length: Number,
   duration: Number,
-  VisitedIn: String,
+  visitedIn: String,
   difficulty: Number,
   scenery: Number,
-  facilities: Number
+  facilities: Number,
+  comment: String,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  park: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Park'
+  }
 })
 
 routeSchema.set('toJSON', {
