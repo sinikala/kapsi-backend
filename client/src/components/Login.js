@@ -7,8 +7,10 @@ import {
 } from '@mui/material'
 
 import { login } from '../services/authorization'
+import { getUserNotes } from '../services/notes'
 import Error from './Error'
 import { setUser } from '../state/user'
+import { setNotes } from '../state/notes'
 import LoginForm from './LoginForm'
 
 
@@ -32,6 +34,8 @@ const Login = () => {
       window.localStorage.setItem(
         'loggedAppUser', JSON.stringify(user)
       )
+      const notes = await getUserNotes(user.token)
+      dispatch(setNotes(notes))
       resetForm()
       navigate('/')
 

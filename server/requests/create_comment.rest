@@ -1,0 +1,14 @@
+POST http://localhost:3001/api/comments
+Content-Type: application/json
+Authorization: bearer 
+
+{
+  "content": "Menkää kaikki",
+  "parkId": "",
+  "noteId": "",
+  "public": true,
+  "type": "comment"
+}
+
+
+

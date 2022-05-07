@@ -1,0 +1,16 @@
+POST http://localhost:3001/api/routes
+Content-Type: application/json
+Authorization: bearer 
+
+{
+  "name": "Pieni Karhunkierros",
+  "length": 15,
+  "duration": 2,
+  "visitedIn": "7/2021, 9/2020",
+  "difficulty": 3.5,
+  "scenery": 4,
+  "facilities":3,
+  "comment": "Ei vesipisteitä",
+  "parkId": "",
+  "noteId": ""
+}

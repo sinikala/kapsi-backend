@@ -4,6 +4,7 @@ import { AppBar, Box, Button, IconButton, Toolbar, Typography } from '@mui/mater
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUser } from '../state/user'
+import { setNotesNull } from '../state/notes'
 import { useNavigate } from 'react-router-dom'
 
 const linkStyle = {
@@ -25,6 +26,7 @@ const NavBar = () => {
   const handleLogout = () => {
     dispatch(setUser(null))
     window.localStorage.removeItem('loggedAppUser')
+    dispatch(setNotesNull())
     navigate('/')
   }
 

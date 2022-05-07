@@ -5,15 +5,31 @@ const Route = require('../models/route')
 const tokenIsValid = require('./tokenHelper')
 
 
-routeRouter.get('/:userId', async (request, response) => {
-  const routes = await Route.find({})
+routeRouter.get('/:parkId', async (request, response) => {
+  let decodedToken = ''
+
+  try {
+    decodedToken = tokenIsValid(request)
+    if (!decodedToken.id) {
+      return response.status(401).json({
+        error: 'token missing or invalid'
+      })
+    }
+  } catch {
+    return response.status(401).json({
+      error: 'token expired'
+    })
+  }
+
+  const user = await User.findById(decodedToken.id)
+  const routes = await Route.find({ user: user._id, park: request.params.parkId })
   response.json(routes)
 })
+
 
 routeRouter.post('/', async (request, response) => {
   const { name, length, duration, visitedIn, difficulty,
     scenery, facilities, comment, noteId, parkId } = request.body
-
   let decodedToken = ''
 
   try {

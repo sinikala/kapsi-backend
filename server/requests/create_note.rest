@@ -3,6 +3,6 @@ Content-Type: application/json
 Authorization: bearer 
 
 {
-  "parkUri": "111",
-  "visitedIn": "9/2020"
+  "parkId": "",
+  "visitedIn": "5/2020"
 }

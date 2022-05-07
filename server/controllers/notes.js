@@ -4,14 +4,34 @@ const Note = require('../models/note')
 const tokenIsValid = require('./tokenHelper')
 
 
-noteRouter.get('/:userId', async (request, response) => {
-  const notes = await Note.find({})
+noteRouter.get('/', async (request, response) => {
+  let decodedToken = ''
+
+  try {
+    decodedToken = tokenIsValid(request)
+    if (!decodedToken.id) {
+      return response.status(401).json({
+        error: 'token missing or invalid'
+      })
+    }
+  } catch {
+    return response.status(401).json({
+      error: 'token expired'
+    })
+  }
+
+  const user = await User.findById(decodedToken.id)
+  const notes = await Note
+    .find({ user: user._id })
+    .populate('comments')
+    .populate('routes')
+
   response.json(notes)
 })
 
+
 noteRouter.post('/', async (request, response) => {
   const { parkId, visitedIn } = request.body
-
   let decodedToken = ''
 
   try {

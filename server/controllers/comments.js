@@ -5,14 +5,30 @@ const Comment = require('../models/comment')
 const tokenIsValid = require('./tokenHelper')
 
 
-commentRouter.get('/:userId', async (request, response) => {
-  const comments = await Comment.find({})
+commentRouter.get('/:parkId', async (request, response) => {
+  let decodedToken = ''
+
+  try {
+    decodedToken = tokenIsValid(request)
+    if (!decodedToken.id) {
+      return response.status(401).json({
+        error: 'token missing or invalid'
+      })
+    }
+  } catch {
+    return response.status(401).json({
+      error: 'token expired'
+    })
+  }
+
+  const user = await User.findById(decodedToken.id)
+  const comments = await Comment.find({ user: user._id, park: request.params.parkId })
   response.json(comments)
 })
 
+
 commentRouter.post('/', async (request, response) => {
   const { content, parkId, noteId, public, type } = request.body
-
   let decodedToken = ''
 
   try {
