@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { Box, Button, ButtonGroup, Typography } from '@mui/material'
+import { Box, Button, ButtonGroup, Divider, Typography } from '@mui/material'
 import AddBoxIcon from '@mui/icons-material/AddBox'
 import { useState } from 'react'
 //import { useNavigate } from 'react-router-dom'
@@ -65,19 +65,28 @@ const UserNote = () => {
     )
   }
 
-  // plan for park
+  // plan for park done
   if (!parkNote && parkPlan) {
     return (
       <Box sx={containerStyle}>
         <Typography color='primary' variant='subtitle' component="div" gutterBottom={true}>
-          Ei vierailtu
+          - Ei vierailtu -
         </Typography>
         <Typography color='primary' variant='subtitle' component="div" gutterBottom={true}>
           Muistiinpanosi tulevaa vierailua varten:
         </Typography>
+        <Divider variant='middle' />
+        <Typography color='gray' variant='caption' component="div" gutterBottom={true} >
+          <i>Muokattu {new Date(parkPlan.editedAt).toLocaleDateString('de-DE')}</i>
+        </Typography>
         <Typography color='primary' variant='subtitle' component="div" gutterBottom={true} align='center'>
           {parkPlan.comment}
         </Typography>
+        <Divider variant='middle' />
+        <Button key="addVisited" onClick={handleVisitedClick}>
+          <AddBoxIcon sx={{ margin: 1 }} /> Merkitse puisto käydyksi
+        </Button>
+        <VisitModal open={visitOpen} setOpen={setVisitOpen} park={park} />
       </Box>
     )
   }
@@ -103,10 +112,10 @@ const UserNote = () => {
       </Typography>
       {parkNote.routes.length > 0
         ? parkNote.routes.map(route => <li key={route.id}>{route.name} </li>)
-        : <Typography color='primary' variant='subtitle' component="div" >
-          Luo uusi reitti
-        </Typography>
-      }
+        : <div></div>}
+      <Button key="addRoute" size='small'>
+        <AddBoxIcon sx={{ margin: 1 }} /> Lisää reitti
+      </Button>
     </Box>
 
   )
