@@ -2,7 +2,6 @@ import { useSelector } from 'react-redux'
 import { Box, Button, ButtonGroup, Divider, Typography } from '@mui/material'
 import AddBoxIcon from '@mui/icons-material/AddBox'
 import { useState } from 'react'
-//import { useNavigate } from 'react-router-dom'
 import PlanModal from './PlanModal'
 import VisitModal from './VisitModal'
 
@@ -14,15 +13,12 @@ const containerStyle = {
 
 
 const UserNote = () => {
-  //const navigate = useNavigate()
   const [planOpen, setPlanOpen] = useState(false)
   const [visitOpen, setVisitOpen] = useState(false)
 
   const park = useSelector(state => state.activePark)
   const parkNote = useSelector(state => state.visitedParks.filter(visited => visited.park === park.id))[0]
   const parkPlan = useSelector(state => state.plannedParks.filter(planned => planned.park === park.id))[0]
-  //console.log('parknote', parkNote)
-
 
 
   const handlePlanClick = () => {
@@ -32,7 +28,7 @@ const UserNote = () => {
 
   const handleVisitedClick = () => {
     setVisitOpen(true)
-    //navigate(`/parknotes/${park.label}`)
+
   }
 
   // no notes at all
@@ -91,7 +87,7 @@ const UserNote = () => {
     )
   }
 
-  //park visited
+  //park visited  ---> Implement Accordion
   return (
     <Box sx={containerStyle}>
 

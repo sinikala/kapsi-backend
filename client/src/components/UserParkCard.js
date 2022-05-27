@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 //import { Card, CardContent, CardHeader, IconButton, Typography, } from '@mui/material'
 import { Box, Tab, Tabs, Typography } from '@mui/material'
 //import EditIcon from '@mui/icons-material/Edit'
-//import { useNavigate } from 'react-router-dom'
+
 
 import theme from '../theme/theme'
 import UserNote from './UserNote'
@@ -12,7 +12,6 @@ import ParkComments from './ParkComments'
 
 
 const containerStyle = {
-  //backgroundColor: theme.palette.secondary.main,
   border: 2,
   borderColor: theme.palette.primary.main,
   borderRadius: 3,
@@ -23,10 +22,8 @@ const containerStyle = {
 
 
 const UserParkCard = () => {
-  //const navigate = useNavigate()
   const activePark = useSelector(state => state.activePark)
   const loggedUser = useSelector(state => state.user)
-
   const [value, setValue] = useState('notes')
 
   const handleChange = (event, newValue) => {
