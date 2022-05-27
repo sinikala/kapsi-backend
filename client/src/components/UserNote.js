@@ -21,6 +21,7 @@ const containerStyle = {
 const UserNote = () => {
   const park = useSelector(state => state.activePark)
   const parkNote = useSelector(state => state.visitedParks.filter(visited => visited.park === park.id))[0]
+  const parkPlan = useSelector(state => state.plannedParks.filter(planned => planned.park === park.id))[0]
   //console.log('parknote', parkNote)
 
   const [value, setValue] = useState('')
@@ -29,7 +30,7 @@ const UserNote = () => {
     setValue(event.target.value)
   }
 
-  if (!parkNote) {
+  if (!parkNote && !parkPlan) {
     return (
       <FormControl>
         <FormLabel id="new-note-radio-buttons">Sinulla ei vielä ole muistiinpanoja tästä puistosta.</FormLabel>
@@ -42,6 +43,22 @@ const UserNote = () => {
           <FormControlLabel value="plan" control={<Radio />} label="Suunnittele vierailuasi" />
         </RadioGroup>
       </FormControl>
+    )
+  }
+
+  if (!parkNote && parkPlan) {
+    return (
+      <Box sx={containerStyle}>
+        <Typography color='primary' variant='subtitle' component="div" gutterBottom={true}>
+          Ei vierailtu
+        </Typography>
+        <Typography color='primary' variant='subtitle' component="div" gutterBottom={true}>
+          Muistiinpanosi tulevaa vierailua varten:
+        </Typography>
+        <Typography color='primary' variant='subtitle' component="div" gutterBottom={true} align='center'>
+          {parkPlan.comment}
+        </Typography>
+      </Box>
     )
   }
 

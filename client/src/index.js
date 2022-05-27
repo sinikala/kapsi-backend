@@ -10,6 +10,7 @@ import App from './App'
 import activeParkReducer from './state/activePark'
 import userReducer from './state/user'
 import visitedParksReducer from './state/visitedParks'
+import plannedParks from './state/plannedParks'
 
 
 const store = configureStore({
@@ -17,6 +18,7 @@ const store = configureStore({
     activePark: activeParkReducer,
     user: userReducer,
     visitedParks: visitedParksReducer,
+    plannedParks: plannedParks
   }
 })
 

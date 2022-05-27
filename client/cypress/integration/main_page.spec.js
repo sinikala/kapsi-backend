@@ -26,7 +26,7 @@ describe('Kapsi front page', function () {
     cy.get('img[src*="icon-orange.png"]').should('not.exist')
   })
 
-  it.only('contains a link to sign in form', function () {
+  it('contains a link to sign in form', function () {
     cy.get('#login-link').click()
     cy.contains('Kirjaudu sisään')
   })

@@ -7,10 +7,11 @@ import {
 } from '@mui/material'
 
 import { login } from '../services/authorization'
-import { getVisitedParks } from '../services/visitedParks'
+import { getAllUserParks } from '../services/userParkService'
 import Error from './Error'
 import { setUser } from '../state/user'
 import { setVisitedParks } from '../state/visitedParks'
+import { setPlannedParks } from '../state/plannedParks'
 import LoginForm from './LoginForm'
 
 
@@ -34,8 +35,9 @@ const Login = () => {
       window.localStorage.setItem(
         'loggedAppUser', JSON.stringify(user)
       )
-      const visitedParks = await getVisitedParks(user.token)
+      const { visitedParks, plannedParks } = await getAllUserParks(user.token)
       dispatch(setVisitedParks(visitedParks))
+      dispatch(setPlannedParks(plannedParks))
       resetForm()
       navigate('/')
 

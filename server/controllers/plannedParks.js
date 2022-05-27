@@ -4,7 +4,7 @@ const PlannedPark = require('../models/plannedPark')
 const tokenIsValid = require('./tokenHelper')
 
 
-plannedParkRouter.get('/:parkId', async (request, response) => {
+plannedParkRouter.get('/', async (request, response) => {
   let decodedToken = ''
 
   try {
@@ -21,9 +21,33 @@ plannedParkRouter.get('/:parkId', async (request, response) => {
   }
 
   const user = await User.findById(decodedToken.id)
-  const plannedParks = await PlannedPark.find({ user: user._id, park: request.params.parkId })
+  const plannedParks = await PlannedPark
+    .find({ user: user._id })
+
   response.json(plannedParks)
 })
+
+
+// plannedParkRouter.get('/:parkId', async (request, response) => {
+//   let decodedToken = ''
+
+//   try {
+//     decodedToken = tokenIsValid(request)
+//     if (!decodedToken.id) {
+//       return response.status(401).json({
+//         error: 'token missing or invalid'
+//       })
+//     }
+//   } catch {
+//     return response.status(401).json({
+//       error: 'token expired'
+//     })
+//   }
+
+//   const user = await User.findById(decodedToken.id)
+//   const plannedParks = await PlannedPark.find({ user: user._id, park: request.params.parkId })
+//   response.json(plannedParks)
+// })
 
 
 plannedParkRouter.post('/', async (request, response) => {
