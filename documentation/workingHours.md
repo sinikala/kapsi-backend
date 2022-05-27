@@ -12,8 +12,9 @@
 | 19.4.|  9    | User creation (client, server, integration tests), login (client, server, integration tests), map & park info refactoring (dynamic custom markers) |
 |20.4. | 4,5   | Frontend testing (form unit tests, e2e cypress tests for existing features), write user manual, start on user park note |
 | 7.5. | 8,5   | Architectural planning, models and creation/retrieval functions for Note, Comment, Route. More error handling, frontend note management, notecard skeleton. Failing with mongoose (array does not support mongoose model operations, who would have known?) |
+| 27.5.| 7,5   | Revamp of database schema and related functions. Front end refactoring. e2e creation and viewing of park plans. Initial display for visited park notes and routes|
 ||||
-| total| 44  | |
+| total| 51,5  | |
 
 
 
