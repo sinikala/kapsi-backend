@@ -3,6 +3,14 @@ const visitBaseUrl = '/api/visitedParks'
 const planBaseUrl = '/api/plannedParks'
 
 
+// GET
+export const getAllUserParks = async (token) => {
+  const visitedParks = await getVisitedParks(token)
+  const plannedParks = await getPlannedParks(token)
+  return { visitedParks, plannedParks }
+}
+
+
 const getVisitedParks = async (token) => {
   const config = {
     headers: { Authorization: `bearer ${token}` }
@@ -21,8 +29,12 @@ const getPlannedParks = async (token) => {
 }
 
 
-export const getAllUserParks = async (token) => {
-  const visitedParks = await getVisitedParks(token)
-  const plannedParks = await getPlannedParks(token)
-  return { visitedParks, plannedParks }
+// POST
+
+export const savePlan = async (newPlan, token) => {
+  const config = {
+    headers: { Authorization: `bearer ${token}` }
+  }
+  const response = await axios.post(planBaseUrl, newPlan, config)
+  return response.data
 }

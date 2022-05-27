@@ -1,7 +1,10 @@
 import { useSelector } from 'react-redux'
 import { Box, Button, ButtonGroup, Typography } from '@mui/material'
 import AddBoxIcon from '@mui/icons-material/AddBox'
-import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+//import { useNavigate } from 'react-router-dom'
+import PlanModal from './PlanModal'
+import VisitModal from './VisitModal'
 
 
 const containerStyle = {
@@ -11,7 +14,10 @@ const containerStyle = {
 
 
 const UserNote = () => {
-  const navigate = useNavigate()
+  //const navigate = useNavigate()
+  const [planOpen, setPlanOpen] = useState(false)
+  const [visitOpen, setVisitOpen] = useState(false)
+
   const park = useSelector(state => state.activePark)
   const parkNote = useSelector(state => state.visitedParks.filter(visited => visited.park === park.id))[0]
   const parkPlan = useSelector(state => state.plannedParks.filter(planned => planned.park === park.id))[0]
@@ -20,11 +26,13 @@ const UserNote = () => {
 
 
   const handlePlanClick = () => {
-    navigate(`/planvisit/${park.label}`)
+    setPlanOpen(true)
+    //navigate(`/planvisit/${park.label}`)
   }
 
   const handleVisitedClick = () => {
-    navigate(`/parknotes/${park.label}`)
+    setVisitOpen(true)
+    //navigate(`/parknotes/${park.label}`)
   }
 
   // no notes at all
@@ -51,6 +59,8 @@ const UserNote = () => {
             <AddBoxIcon sx={{ margin: 1 }} /> Tallenna muistiinpanoja vielä käymättömästä puistosta
           </Button>
         </ButtonGroup>
+        <PlanModal open={planOpen} setOpen={setPlanOpen} park={park} />
+        <VisitModal open={visitOpen} setOpen={setVisitOpen} park={park} />
       </Box>
     )
   }

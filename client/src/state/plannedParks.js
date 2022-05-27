@@ -9,11 +9,14 @@ const plannedParksSlice = createSlice({
     setPlannedParks(state, action) {
       return action.payload
     },
+    addPlannedPark(state, action) {
+      return state.concat(action.payload)
+    },
     setPlannedParksNull() {
       return []
     }
   }
 })
 
-export const { setPlannedParks, setPlannedParksNull } = plannedParksSlice.actions
+export const { setPlannedParks, addPlannedPark, setPlannedParksNull } = plannedParksSlice.actions
 export default plannedParksSlice.reducer
