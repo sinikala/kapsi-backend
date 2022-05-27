@@ -1,8 +1,9 @@
 const routeRouter = require('express').Router()
 const User = require('../models/user')
-const Note = require('../models/note')
+const visitedPark = require('../models/visitedPark')
 const Route = require('../models/route')
 const tokenIsValid = require('./tokenHelper')
+const VisitedPark = require('../models/visitedPark')
 
 
 routeRouter.get('/:parkId', async (request, response) => {
@@ -29,7 +30,7 @@ routeRouter.get('/:parkId', async (request, response) => {
 
 routeRouter.post('/', async (request, response) => {
   const { name, length, duration, visitedIn, difficulty,
-    scenery, facilities, comment, noteId, parkId } = request.body
+    scenery, facilities, comment, visitedParkId, parkId } = request.body
   let decodedToken = ''
 
   try {
@@ -46,7 +47,7 @@ routeRouter.post('/', async (request, response) => {
   }
 
   const user = await User.findById(decodedToken.id)
-  const note = await Note.findById(noteId)
+  const visitedPark = await VisitedPark.findById(visitedParkId)
 
   const newRoute = new Route({
     name,
@@ -62,8 +63,8 @@ routeRouter.post('/', async (request, response) => {
   })
 
   const savedRoute = await newRoute.save()
-  note.routes = note.routes.concat(savedRoute._id)
-  await note.save()
+  visitedPark.routes = visitedPark.routes.concat(savedRoute._id)
+  await visitedPark.save()
 
   response.status(201).json(savedRoute)
 

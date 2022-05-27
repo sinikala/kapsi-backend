@@ -1,11 +1,10 @@
-const commentRouter = require('express').Router()
+const plannedParkRouter = require('express').Router()
 const User = require('../models/user')
-const Note = require('../models/note')
-const Comment = require('../models/comment')
+const PlannedPark = require('../models/plannedPark')
 const tokenIsValid = require('./tokenHelper')
 
 
-commentRouter.get('/:parkId', async (request, response) => {
+plannedParkRouter.get('/:parkId', async (request, response) => {
   let decodedToken = ''
 
   try {
@@ -22,13 +21,13 @@ commentRouter.get('/:parkId', async (request, response) => {
   }
 
   const user = await User.findById(decodedToken.id)
-  const comments = await Comment.find({ user: user._id, park: request.params.parkId })
-  response.json(comments)
+  const plannedParks = await PlannedPark.find({ user: user._id, park: request.params.parkId })
+  response.json(plannedParks)
 })
 
 
-commentRouter.post('/', async (request, response) => {
-  const { content, parkId, noteId, public, type } = request.body
+plannedParkRouter.post('/', async (request, response) => {
+  const { comment, parkId } = request.body
   let decodedToken = ''
 
   try {
@@ -45,24 +44,19 @@ commentRouter.post('/', async (request, response) => {
   }
 
   const user = await User.findById(decodedToken.id)
-  const note = await Note.findById(noteId)
 
-  const newComment = new Comment({
-    content,
-    createdAt: new Date(),
-    public,
-    type,
+  const newPlannedPark = new PlannedPark({
+    comment,
+    editedAt: new Date(),
     user: user._id,
     park: parkId
   })
 
-  const savedComment = await newComment.save()
-  note.comments = note.comments.concat(savedComment._id)
-  await note.save()
-
-  response.status(201).json(savedComment)
-
+  const savedPlannedPark = await newPlannedPark.save()
+  response.status(201).json(savedPlannedPark)
+  user.plannedParks = user.plannedParks.concat(savedPlannedPark._id)
+  await user.save()
 })
 
 
-module.exports = commentRouter
+module.exports = plannedParkRouter

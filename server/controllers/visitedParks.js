@@ -1,10 +1,10 @@
-const noteRouter = require('express').Router()
+const visitedParkRouter = require('express').Router()
 const User = require('../models/user')
-const Note = require('../models/note')
+const VisitedPark = require('../models/visitedPark')
 const tokenIsValid = require('./tokenHelper')
 
 
-noteRouter.get('/', async (request, response) => {
+visitedParkRouter.get('/', async (request, response) => {
   let decodedToken = ''
 
   try {
@@ -21,17 +21,16 @@ noteRouter.get('/', async (request, response) => {
   }
 
   const user = await User.findById(decodedToken.id)
-  const notes = await Note
+  const visitedParks = await VisitedPark
     .find({ user: user._id })
-    .populate('comments')
     .populate('routes')
 
-  response.json(notes)
+  response.json(visitedParks)
 })
 
 
-noteRouter.post('/', async (request, response) => {
-  const { parkId, visitedIn } = request.body
+visitedParkRouter.post('/', async (request, response) => {
+  const { parkId, visitedIn, comment } = request.body
   let decodedToken = ''
 
   try {
@@ -50,18 +49,19 @@ noteRouter.post('/', async (request, response) => {
 
   const user = await User.findById(decodedToken.id)
 
-  const newNote = new Note({
+  const newVisitedPark = new VisitedPark({
     park: parkId,
     visitedIn,
     createdAt: new Date(),
+    comments: [{ createdAt: new Date(), comment: comment }],
     user: user._id
   })
 
-  const savedNote = await newNote.save()
-  user.notes = user.notes.concat(savedNote._id)
+  const savedVisitedPark = await newVisitedPark.save()
+  user.visitedParks = user.visitedParks.concat(savedVisitedPark._id)
   await user.save()
 
-  response.status(201).json(savedNote)
+  response.status(201).json(savedVisitedPark)
 })
 
-module.exports = noteRouter
+module.exports = visitedParkRouter

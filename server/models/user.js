@@ -4,12 +4,24 @@ const userSchema = new mongoose.Schema({
   username: String,
   name: String,
   passwordHash: String,
-  notes: [
+  visitedParks: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Note'
+      ref: 'VisitedPark'
     }
   ],
+  plannedParks: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'PlannedPark'
+    }
+  ],
+  reviews: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Review'
+    }
+  ]
 })
 
 userSchema.set('toJSON', {

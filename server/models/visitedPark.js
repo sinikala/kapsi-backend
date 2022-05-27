@@ -1,31 +1,26 @@
 const mongoose = require('mongoose')
 
-const noteSchema = new mongoose.Schema({
+const visitedParkSchema = new mongoose.Schema({
   visitedIn: String,
   createdAt: Date,
-  park: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Park'
-  },
-  comments: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Comment'
-    }
-  ],
+  comments: [{ createdAt: Date, comment: String }],
   routes: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Route'
     }
   ],
+  park: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Park'
+  },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   }
 })
 
-noteSchema.set('toJSON', {
+visitedParkSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString()
     delete returnedObject._id
@@ -33,6 +28,6 @@ noteSchema.set('toJSON', {
   }
 })
 
-const Note = mongoose.model('Note', noteSchema)
+const VisitedPark = mongoose.model('VisitedPark', visitedParkSchema)
 
-module.exports = Note
+module.exports = VisitedPark

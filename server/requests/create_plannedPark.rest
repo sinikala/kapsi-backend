@@ -1,0 +1,8 @@
+POST http://localhost:3001/api/plannedParks
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hbGxlIiwiaWQiOiI2MjkwYWQ1Y2I3MmExY2RmNTRkMzNhZTQiLCJpYXQiOjE2NTM2NDg3NzUsImV4cCI6MTY1MzY1MjM3NX0._TRZTM12_SJVHuHwbapvcBhWsrIqfXEQzTsXTkw_dQ8
+
+{
+  "comment": "Täällä kivoja metsälampia kuulemma.",
+  "parkId": "625568b33b67468ef366f99e"
+}
