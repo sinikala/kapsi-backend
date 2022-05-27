@@ -12,7 +12,7 @@ import ParkComments from './ParkComments'
 
 
 const containerStyle = {
-  backgroundColor: theme.palette.secondary.main,
+  //backgroundColor: theme.palette.secondary.main,
   border: 2,
   borderColor: theme.palette.primary.main,
   borderRadius: 3,

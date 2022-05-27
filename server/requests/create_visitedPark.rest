@@ -3,7 +3,7 @@ Content-Type: application/json
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hbGxlIiwiaWQiOiI2MjkwYWQ1Y2I3MmExY2RmNTRkMzNhZTQiLCJpYXQiOjE2NTM2NDg3NzUsImV4cCI6MTY1MzY1MjM3NX0._TRZTM12_SJVHuHwbapvcBhWsrIqfXEQzTsXTkw_dQ8
 
 {
-  "parkId": "625568b33b67468ef366f99f",
-  "visitedIn": "7/2021",
-  "comment": "Hieno puisto, ensi kerralla vettä enemmän mukaan."
+  "parkId": "625568b33b67468ef366f9a1",
+  "visitedIn": "8/2022",
+  "comment": "Uusi ja hieno!"
 }

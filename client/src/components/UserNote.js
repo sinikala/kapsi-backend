@@ -1,6 +1,22 @@
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
-import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Typography } from '@mui/material'
+import { Box, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Typography } from '@mui/material'
+
+
+
+
+const containerStyle = {
+  //backgroundColor: theme.palette.secondary.main,
+  //border: 2,
+  //borderColor: theme.palette.primary.main,
+  //borderRadius: 3,
+  padding: 2,
+  width: '80%'
+}
+
+
+
+
 
 const UserNote = () => {
   const park = useSelector(state => state.activePark)
@@ -30,9 +46,30 @@ const UserNote = () => {
   }
 
   return (
-    <div> Muistiinpanosi kohteesta {park.label}
-      <Typography>Vierailtu {parkNote.visitedIn}</Typography>
-    </div>
+    <Box sx={containerStyle}>
+
+      <Typography color='primary' variant='subtitle' component="div" gutterBottom={true}>
+        Vierailtu {parkNote.visitedIn}
+      </Typography>
+      <Typography color='primary' variant='subtitle' component="div" >
+        Muistiinpanot
+      </Typography>
+      {parkNote.comments.length > 0
+        ? parkNote.comments.map(comment => <li key={comment._id}>{comment.comment}  ({comment.createdAt})</li>)
+        : <Typography color='primary' variant='subtitle' component="div" >
+          Luo muistiinpano
+        </Typography>
+      }
+      <Typography color='primary' variant='subtitle' component="div" >
+        Käydyt reitit
+      </Typography>
+      {parkNote.routes.length > 0
+        ? parkNote.routes.map(route => <li key={route.id}>{route.name} </li>)
+        : <Typography color='primary' variant='subtitle' component="div" >
+          Luo uusi reitti
+        </Typography>
+      }
+    </Box>
 
   )
 
