@@ -1,51 +1,61 @@
 import { useSelector } from 'react-redux'
-import { useState } from 'react'
-import { Box, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Typography } from '@mui/material'
-
-
+import { Box, Button, ButtonGroup, Typography } from '@mui/material'
+import AddBoxIcon from '@mui/icons-material/AddBox'
+import { useNavigate } from 'react-router-dom'
 
 
 const containerStyle = {
-  //backgroundColor: theme.palette.secondary.main,
-  //border: 2,
-  //borderColor: theme.palette.primary.main,
-  //borderRadius: 3,
   padding: 2,
-  width: '80%'
+  width: '80%',
 }
 
 
-
-
-
 const UserNote = () => {
+  const navigate = useNavigate()
   const park = useSelector(state => state.activePark)
   const parkNote = useSelector(state => state.visitedParks.filter(visited => visited.park === park.id))[0]
   const parkPlan = useSelector(state => state.plannedParks.filter(planned => planned.park === park.id))[0]
   //console.log('parknote', parkNote)
 
-  const [value, setValue] = useState('')
 
-  const handleChange = (event) => {
-    setValue(event.target.value)
+
+  const handlePlanClick = () => {
+    navigate(`/planvisit/${park.label}`)
   }
 
+  const handleVisitedClick = () => {
+    navigate(`/parknotes/${park.label}`)
+  }
+
+  // no notes at all
   if (!parkNote && !parkPlan) {
     return (
-      <FormControl>
-        <FormLabel id="new-note-radio-buttons">Sinulla ei vielä ole muistiinpanoja tästä puistosta.</FormLabel>
-        <RadioGroup
-          name="new-note-buttons"
-          value={value}
-          onChange={handleChange}
+      <Box sx={{
+        display: 'flex',
+        '& > *': {
+          m: 1,
+        },
+        marginLeft: 5,
+        marginTop: 3,
+      }}>
+        <ButtonGroup
+          orientation="vertical"
+          aria-label="vertical contained button group"
+          variant="text"
+          style={{ alignItems: 'flex-start' }}
         >
-          <FormControlLabel value="newNote" control={<Radio />} label="Merkitse puisto käydyksi ja luo muistiinpanoja" />
-          <FormControlLabel value="plan" control={<Radio />} label="Suunnittele vierailuasi" />
-        </RadioGroup>
-      </FormControl>
+          <Button key="addVisited" onClick={handleVisitedClick}>
+            <AddBoxIcon sx={{ margin: 1 }} /> Merkitse puisto käydyksi
+          </Button>
+          <Button key="addPlanned" onClick={handlePlanClick}>
+            <AddBoxIcon sx={{ margin: 1 }} /> Tallenna muistiinpanoja vielä käymättömästä puistosta
+          </Button>
+        </ButtonGroup>
+      </Box>
     )
   }
 
+  // plan for park
   if (!parkNote && parkPlan) {
     return (
       <Box sx={containerStyle}>
@@ -62,6 +72,7 @@ const UserNote = () => {
     )
   }
 
+  //park visited
   return (
     <Box sx={containerStyle}>
 
@@ -72,7 +83,7 @@ const UserNote = () => {
         Muistiinpanot
       </Typography>
       {parkNote.comments.length > 0
-        ? parkNote.comments.map(comment => <li key={comment._id}>{comment.comment}  ({comment.createdAt})</li>)
+        ? parkNote.comments.map(comment => <li key={comment._id}>{comment.comment}  ({new Date(comment.createdAt).toLocaleDateString('de-DE')})</li>)
         : <Typography color='primary' variant='subtitle' component="div" >
           Luo muistiinpano
         </Typography>
