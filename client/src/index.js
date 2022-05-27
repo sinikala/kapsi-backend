@@ -9,14 +9,14 @@ import App from './App'
 
 import activeParkReducer from './state/activePark'
 import userReducer from './state/user'
-import notesReducer from './state/notes'
+import visitedParksReducer from './state/visitedParks'
 
 
 const store = configureStore({
   reducer: {
     activePark: activeParkReducer,
     user: userReducer,
-    notes: notesReducer,
+    visitedParks: visitedParksReducer,
   }
 })
 

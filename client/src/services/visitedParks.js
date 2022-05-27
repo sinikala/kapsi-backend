@@ -1,8 +1,8 @@
 import axios from 'axios'
-const baseUrl = '/api/notes'
+const baseUrl = '/api/visitedParks'
 
 
-export const getUserNotes = async (token) => {
+export const getVisitedParks = async (token) => {
   const config = {
     headers: { Authorization: `bearer ${token}` }
   }

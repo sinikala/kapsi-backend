@@ -1,6 +1,5 @@
 const routeRouter = require('express').Router()
 const User = require('../models/user')
-const visitedPark = require('../models/visitedPark')
 const Route = require('../models/route')
 const tokenIsValid = require('./tokenHelper')
 const VisitedPark = require('../models/visitedPark')
