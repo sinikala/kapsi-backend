@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { useState } from 'react'
-import { Accordion, AccordionDetails, AccordionSummary, Box, Button, IconButton, Stack, Typography } from '@mui/material'
+import { Accordion, AccordionDetails, AccordionSummary, Box, Button, IconButton, Rating, Stack, Typography } from '@mui/material'
 import AddBoxIcon from '@mui/icons-material/AddBox'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import EditIcon from '@mui/icons-material/Edit'
@@ -54,12 +54,12 @@ const VisitedParkDetails = ({ parkNote }) => {
               Ei muistiinpanoja
             </Typography>
             : <Typography color='gray' variant='body2'>
-              {parkNote.comments.length} kpl
+              {parkNote.comments.length}
             </Typography>
           }
         </AccordionSummary>
         <AccordionDetails>
-          <Comment comments={parkNote.comments} />
+          <Comments comments={parkNote.comments} />
         </AccordionDetails>
       </Accordion>
 
@@ -72,15 +72,17 @@ const VisitedParkDetails = ({ parkNote }) => {
           <Typography sx={{ width: '33%', flexShrink: 0 }}>
             Reitit
           </Typography>
-          <Typography sx={{ color: 'text.secondary' }}>
-            Filtering has been entirely disabled for whole web server
-          </Typography>
+          {parkNote.routes.length === 0
+            ? <Typography color='gray' variant='body2'>
+              Ei tallennettuja reittejä
+            </Typography>
+            : <Typography color='gray' variant='body2'>
+              {parkNote.routes.length}
+            </Typography>
+          }
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
-            Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit
-            amet egestas eros, vitae egestas augue. Duis vel est augue.
-          </Typography>
+          <Routes routes={parkNote.routes} />
         </AccordionDetails>
       </Accordion>
 
@@ -93,12 +95,15 @@ export default VisitedParkDetails
 
 
 
-
-
-const Comment = ({ comments }) => {
+const Comments = ({ comments }) => {
 
   return (
     <Box>
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <IconButton aria-label='add' color='primary' key="addComment" onClick={() => { }}>
+          <AddBoxIcon />
+        </IconButton>
+      </Box>
       {comments.length === 0
         ? <Typography color='grey' variant='subtitle' component="div" >
           Ei muistiinpanoja
@@ -107,18 +112,63 @@ const Comment = ({ comments }) => {
           <Stack key={comment._id} sx={boxStyle} >
             <Typography color='gray' variant='body2' component="div" align='right'>
               <i>Luotu {new Date(comment.createdAt).toLocaleDateString('de-DE')}</i>
-              <IconButton aria-label='edit' size='small' onClick={() => { }}>
+              <IconButton aria-label='edit' size='small' color='primary' onClick={() => { }}>
                 <EditIcon fontSize="inherit" />
               </IconButton>
             </Typography>
             <Typography variant='body' component="div" >
               {comment.comment}
             </Typography>
-
           </Stack>
         )
       }
     </Box>
+  )
+}
+
+
+const Routes = ({ routes }) => {
+  return (
+
+    <Box sx={containerStyle}>
+      {routes.map(route =>
+
+        <Accordion key={route.id}>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel2bh-content"
+            id="panel2bh-header"
+          >
+            <Typography color='primary' sx={{ width: '33%', flexShrink: 0 }}>
+              <b>{route.name}</b>
+            </Typography>
+            <Typography color='gray' variant='body2'>
+              {route['length']} km
+            </Typography>
+
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
+              Kesto: {route.duration} tuntia, kuljettu: {route.visitedIn}
+            </Typography>
+            <Typography component='legend'>
+              Haastavuus
+              <Rating name='difficulty' value={route.difficulty} readOnly style={{ color: theme.palette.primary.main }} />
+            </Typography>
+            <Typography component='legend'>
+              Maisemat
+              <Rating name='scenery' value={route.scenery} readOnly style={{ color: theme.palette.primary.main }} />
+            </Typography>
+            <Typography component='legend'>
+              Fasiliteetit
+              <Rating name='facilities' value={route.facilities} readOnly style={{ color: theme.palette.primary.main }} />
+            </Typography>
+            <Typography><i>{route.comment}</i></Typography>
+          </AccordionDetails>
+        </Accordion>
+      )}
+    </Box>
+
   )
 }
 
