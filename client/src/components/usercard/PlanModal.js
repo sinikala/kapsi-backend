@@ -2,10 +2,10 @@ import { Box, Modal, Typography } from '@mui/material'
 import { Formik, Form, Field } from 'formik'
 import { useSelector, useDispatch } from 'react-redux'
 import * as yup from 'yup'
-import theme from '../theme/theme'
-import Error from './Error'
-import { savePlan } from '../services/userParkService'
-import { addPlannedPark } from '../state/plannedParks'
+import theme from '../../theme/theme'
+import Error from '../Error'
+import { savePlan } from '../../services/userParkService'
+import { addPlannedPark } from '../../state/plannedParks'
 
 const style = {
   position: 'absolute',

@@ -6,9 +6,9 @@ import {
   Box, Typography
 } from '@mui/material'
 
-import { login, signUp } from '../services/authorization'
-import Error from './Error'
-import { setUser } from '../state/user'
+import { login, signUp } from '../../services/authorization'
+import Error from '../Error'
+import { setUser } from '../../state/user'
 import SignUpForm from './SignUpForm'
 
 

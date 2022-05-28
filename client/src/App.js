@@ -5,8 +5,8 @@ import {
 
 import Main from './components/Main'
 import NavBar from './components/NavBar'
-import Login from './components/Login'
-import SignUp from './components/SignUp'
+import Login from './components/authorization/Login'
+import SignUp from './components/authorization/SignUp'
 
 const App = () => (
   <Router>

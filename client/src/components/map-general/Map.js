@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import { MapContainer, Marker, TileLayer } from 'react-leaflet'
 import { Container } from '@mui/material'
 import Leaflet from 'leaflet'
-import '../app.css'
-import theme from '../theme/theme'
+import '../../app.css'
+import theme from '../../theme/theme'
 
 
-import { getAll } from '../services/parks'
-import { setActivePark } from '../state/activePark'
+import { getAll } from '../../services/parks'
+import { setActivePark } from '../../state/activePark'
 
 
 const containerStyle = {

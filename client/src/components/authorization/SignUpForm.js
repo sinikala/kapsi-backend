@@ -5,8 +5,8 @@ import {
   Box
 } from '@mui/material'
 
-import theme from '../theme/theme'
-import Error from './Error'
+import theme from '../../theme/theme'
+import Error from '../Error'
 
 
 const buttonStyle = {

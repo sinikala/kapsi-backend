@@ -6,12 +6,12 @@ import {
   Box, Grid, Typography
 } from '@mui/material'
 
-import { login } from '../services/authorization'
-import { getAllUserParks } from '../services/userParkService'
-import Error from './Error'
-import { setUser } from '../state/user'
-import { setVisitedParks } from '../state/visitedParks'
-import { setPlannedParks } from '../state/plannedParks'
+import { login } from '../../services/authorization'
+import { getAllUserParks } from '../../services/userParkService'
+import Error from '../Error'
+import { setUser } from '../../state/user'
+import { setVisitedParks } from '../../state/visitedParks'
+import { setPlannedParks } from '../../state/plannedParks'
 import LoginForm from './LoginForm'
 
 

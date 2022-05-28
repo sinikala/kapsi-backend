@@ -4,8 +4,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Container, Card, CardContent, CardHeader, CardMedia, IconButton, Typography, } from '@mui/material'
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded'
 
-import theme from '../theme/theme'
-import { setActivePark } from '../state/activePark'
+import theme from '../../theme/theme'
+import { setActivePark } from '../../state/activePark'
 
 const containerStyle = {
   //backgroundColor: theme.palette.secondary.main,

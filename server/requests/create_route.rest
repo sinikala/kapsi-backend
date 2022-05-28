@@ -1,16 +1,16 @@
 POST http://localhost:3001/api/routes
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hbGxlIiwiaWQiOiI2MjkwYWQ1Y2I3MmExY2RmNTRkMzNhZTQiLCJpYXQiOjE2NTM2NDg3NzUsImV4cCI6MTY1MzY1MjM3NX0._TRZTM12_SJVHuHwbapvcBhWsrIqfXEQzTsXTkw_dQ8
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hbGxlIiwiaWQiOiI2MjkwYWQ1Y2I3MmExY2RmNTRkMzNhZTQiLCJpYXQiOjE2NTM3MzQyNzYsImV4cCI6MTY1MzczNzg3Nn0.GDv7ElTdIMxZkIsvXpvoP55batXlclRxWMkIWiVNlSs
 
 {
-  "name": "Pieni Karhunkierros",
-  "length": 15,
-  "duration": 2,
-  "visitedIn": "7/2021, 9/2020",
-  "difficulty": 3.5,
+  "name": "Iso Karhunkierros",
+  "length": 25,
+  "duration": 15,
+  "visitedIn": "9/2020",
+  "difficulty": 4.5,
   "scenery": 4,
   "facilities":3,
-  "comment": "Ei vesipisteitä.",
+  "comment": "Harvoin vesipisteitä.",
   "parkId": "625568b33b67468ef366f99f",
   "visitedParkId": "6290aeb1a3497ea36fb5e055"
 }

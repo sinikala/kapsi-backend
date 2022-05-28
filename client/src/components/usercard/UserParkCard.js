@@ -5,9 +5,9 @@ import { Box, Tab, Tabs, Typography } from '@mui/material'
 //import EditIcon from '@mui/icons-material/Edit'
 
 
-import theme from '../theme/theme'
-import UserNote from './UserNote'
-import ParkComments from './ParkComments'
+import theme from '../../theme/theme'
+import UserNote from './UserNotes'
+import ParkComments from './ParkReviews'
 
 
 
