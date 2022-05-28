@@ -1,6 +1,4 @@
-/* eslint-disable */
-import { useState } from 'react'
-import { Accordion, AccordionDetails, AccordionSummary, Box, Button, IconButton, Rating, Stack, Typography } from '@mui/material'
+import { Accordion, AccordionDetails, AccordionSummary, Box, Divider, Grid, IconButton, Rating, Stack, Typography } from '@mui/material'
 import AddBoxIcon from '@mui/icons-material/AddBox'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import EditIcon from '@mui/icons-material/Edit'
@@ -29,9 +27,9 @@ const VisitedParkDetails = ({ parkNote }) => {
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
-          id="panel1bh-header"
-        >
-          <Typography sx={{ width: '33%', flexShrink: 0 }}>
+          id="panel1bh-header">
+          <Typography color='primary'
+            sx={{ width: '33%', flexShrink: 0, fontWeight: 'medium' }}>
             Vierailtu
           </Typography>
         </AccordionSummary>
@@ -46,9 +44,11 @@ const VisitedParkDetails = ({ parkNote }) => {
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel2bh-content"
-          id="panel2bh-header"
-        >
-          <Typography sx={{ width: '33%', flexShrink: 0 }}>Muistiinpanot</Typography>
+          id="panel2bh-header">
+          <Typography color='primary'
+            sx={{ width: '33%', flexShrink: 0, fontWeight: 'medium' }}>
+            Muistiinpanot
+          </Typography>
           {parkNote.comments.length === 0
             ? <Typography color='gray' variant='body2'>
               Ei muistiinpanoja
@@ -67,9 +67,9 @@ const VisitedParkDetails = ({ parkNote }) => {
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel3bh-content"
-          id="panel3bh-header"
-        >
-          <Typography sx={{ width: '33%', flexShrink: 0 }}>
+          id="panel3bh-header">
+          <Typography color='primary'
+            sx={{ width: '33%', flexShrink: 0, fontWeight: 'medium' }}>
             Reitit
           </Typography>
           {parkNote.routes.length === 0
@@ -82,11 +82,13 @@ const VisitedParkDetails = ({ parkNote }) => {
           }
         </AccordionSummary>
         <AccordionDetails>
-          <Routes routes={parkNote.routes} />
+          <Box sx={containerStyle}>
+            {parkNote.routes.map(route =>
+              <Route route={route} key={route.id} />
+            )}
+          </Box>
         </AccordionDetails>
       </Accordion>
-
-
     </Box>
   )
 }
@@ -96,7 +98,6 @@ export default VisitedParkDetails
 
 
 const Comments = ({ comments }) => {
-
   return (
     <Box>
       <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -127,48 +128,110 @@ const Comments = ({ comments }) => {
 }
 
 
-const Routes = ({ routes }) => {
+const Route = ({ route }) => {
+  const handleEdit = () => {
+    console.log(route)
+  }
+
   return (
 
-    <Box sx={containerStyle}>
-      {routes.map(route =>
+    <Accordion >
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="panel2bh-content"
+        id="panel2bh-header">
+        <Typography color='primary' sx={{ width: '33%', flexShrink: 0, fontWeight: 'medium' }}>
+          {route.name}
+        </Typography>
+        <Typography >
+          {route['length']} km
+        </Typography>
 
-        <Accordion key={route.id}>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2bh-content"
-            id="panel2bh-header"
-          >
-            <Typography color='primary' sx={{ width: '33%', flexShrink: 0 }}>
-              <b>{route.name}</b>
+      </AccordionSummary>
+      <AccordionDetails>
+        <Grid container spacing={2}>
+          <Grid item xs={4}>
+            <Typography gutterBottom={true}>
+              Kuljettu:
             </Typography>
-            <Typography color='gray' variant='body2'>
-              {route['length']} km
+          </Grid>
+          <Grid item xs={6}>
+            <Typography gutterBottom={true}>
+              {route.visitedIn}
             </Typography>
+          </Grid>
+          <Grid item xs={2}>
+            <IconButton aria-label='editRoute' size='small' color='primary' key={route.id} onClick={handleEdit}>
+              <EditIcon fontSize="inherit" />
+            </IconButton>
+          </Grid>
+        </Grid>
 
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography>
-              Kesto: {route.duration} tuntia, kuljettu: {route.visitedIn}
+        <Grid container spacing={2}>
+          <Grid item xs={4}>
+            <Typography gutterBottom={true}>
+              Kesto:
             </Typography>
-            <Typography component='legend'>
+          </Grid>
+          <Grid item xs={6}>
+            <Typography gutterBottom={true}>
+              {route.duration} tuntia
+            </Typography>
+          </Grid>
+        </Grid>
+
+        <Grid container spacing={2}>
+          <Grid item xs={4}>
+            <Typography component='legend' >
               Haastavuus
-              <Rating name='difficulty' value={route.difficulty} readOnly style={{ color: theme.palette.primary.main }} />
             </Typography>
-            <Typography component='legend'>
-              Maisemat
-              <Rating name='scenery' value={route.scenery} readOnly style={{ color: theme.palette.primary.main }} />
-            </Typography>
-            <Typography component='legend'>
-              Fasiliteetit
-              <Rating name='facilities' value={route.facilities} readOnly style={{ color: theme.palette.primary.main }} />
-            </Typography>
-            <Typography><i>{route.comment}</i></Typography>
-          </AccordionDetails>
-        </Accordion>
-      )}
-    </Box>
+          </Grid>
+          <Grid item xs={6}>
+            <Rating
+              name='difficulty'
+              value={route.difficulty}
+              readOnly
+              precision={0.5}
+              style={{ color: theme.palette.primary.main }} />
+          </Grid>
+        </Grid>
 
+        <Grid container spacing={2}>
+          <Grid item xs={4}>
+            <Typography component='legend' >
+              Maisemat
+            </Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <Rating
+              name='scenery'
+              value={route.scenery}
+              readOnly
+              precision={0.5}
+              style={{ color: theme.palette.primary.main }} />
+          </Grid>
+        </Grid>
+
+        <Grid container spacing={2}>
+          <Grid item xs={4}>
+            <Typography component='legend' >
+              Fasiliteetit
+            </Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <Rating
+              name='facilities'
+              value={route.facilities}
+              readOnly
+              precision={0.5}
+              style={{ color: theme.palette.primary.main }} />
+          </Grid>
+        </Grid>
+
+        <Divider variant='middle' sx={{ margin: 1 }} />
+        <Typography><i>{route.comment}</i></Typography>
+      </AccordionDetails>
+    </Accordion>
   )
 }
 

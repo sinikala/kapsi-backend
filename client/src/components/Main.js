@@ -13,11 +13,11 @@ const gridStyle = {
 
 const Main = () => {
   return (
-    <Grid container spacing={1} sx={gridStyle}>
-      <Grid item xs={6} md={6}>
+    <Grid container columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={gridStyle}>
+      <Grid item xs >
         <Map />
       </Grid>
-      <Grid item xs={6} md={6} >
+      <Grid item xs >
         <Stack spacing={2}>
           <ParkInfo />
           <UserParkCard />
