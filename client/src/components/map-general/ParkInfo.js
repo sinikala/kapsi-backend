@@ -39,11 +39,11 @@ const ParkInfo = () => {
           }
         />
         <CardContent>
-          <Typography variant='subtitle' color='primary' component="div" gutterBottom={true}>
+          <Typography variant='subtitle' component="div" gutterBottom={true}>
             Sijainti: {park.locatedInLabel}
           </Typography>
 
-          <Typography color='primary' variant='subtitle' component="div" gutterBottom={true}>
+          <Typography variant='subtitle' component="div" gutterBottom={true}>
             Perustettu: {park.inceptionYear}
           </Typography>
         </CardContent>

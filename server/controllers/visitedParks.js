@@ -81,7 +81,7 @@ visitedParkRouter.put('/comment/:id', async (request, response) => {
       error: 'token expired'
     })
   }
-  //const user = await User.findById(decodedToken.id)
+
   const oldVisitedPark = await VisitedPark.findById(request.params.id)
   const updatedComments = oldVisitedPark.comments.concat(
     { createdAt: new Date(), comment: comment }
@@ -94,20 +94,7 @@ visitedParkRouter.put('/comment/:id', async (request, response) => {
   } catch {
     console.log('error')
   }
-  // const updatedVisitedPark = new VisitedPark({
-  //   park: oldVisitedPark.park,
-  //   visitedIn: oldVisitedPark.visitedIn,
-  //   createdAt: oldVisitedPark.createdAt,
-  //   comments: oldVisitedPark.comments.concat({ createdAt: new Date(), comment: comment }),
-  //   user: user._id,
-  //   routes: oldVisitedPark.routes
-  // })
 
-  // VisitedPark.findByIdAndUpdate(request.params.id, updatedVisitedPark, { new: true })
-  //   .then(updatedVisitedPark => {
-  //     response.json(updatedVisitedPark)
-  //   })
-  //   .catch(error => console.log(error))
 })
 
 module.exports = visitedParkRouter

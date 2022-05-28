@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux'
 import { Box, Button, ButtonGroup, Divider, Typography } from '@mui/material'
 import AddBoxIcon from '@mui/icons-material/AddBox'
 import { useState } from 'react'
+import VisitedParkDetails from './VisitedParkDetails'
 import PlanModal from './PlanModal'
 import VisitModal from './VisitModal'
 
@@ -11,6 +12,14 @@ const containerStyle = {
   width: '80%',
 }
 
+const boxStyle = {
+  display: 'flex',
+  '& > *': {
+    m: 1,
+  },
+  marginLeft: 5,
+  marginTop: 3,
+}
 
 const UserNote = () => {
   const [planOpen, setPlanOpen] = useState(false)
@@ -34,14 +43,7 @@ const UserNote = () => {
   // no notes at all
   if (!parkNote && !parkPlan) {
     return (
-      <Box sx={{
-        display: 'flex',
-        '& > *': {
-          m: 1,
-        },
-        marginLeft: 5,
-        marginTop: 3,
-      }}>
+      <Box sx={boxStyle}>
         <ButtonGroup
           orientation="vertical"
           aria-label="vertical contained button group"
@@ -61,7 +63,7 @@ const UserNote = () => {
     )
   }
 
-  // plan for park done
+  // plan for park exists
   if (!parkNote && parkPlan) {
     return (
       <Box sx={containerStyle}>
@@ -72,7 +74,7 @@ const UserNote = () => {
           Muistiinpanosi tulevaa vierailua varten:
         </Typography>
         <Divider variant='middle' />
-        <Typography color='gray' variant='caption' component="div" gutterBottom={true} >
+        <Typography color='gray' variant='body2' component="div" gutterBottom={true} >
           <i>Muokattu {new Date(parkPlan.editedAt).toLocaleDateString('de-DE')}</i>
         </Typography>
         <Typography color='primary' variant='subtitle' component="div" gutterBottom={true} align='center'>
@@ -87,35 +89,10 @@ const UserNote = () => {
     )
   }
 
-  //park visited  ---> Implement Accordion
+  // park visited
   return (
-    <Box sx={containerStyle}>
-
-      <Typography color='primary' variant='subtitle' component="div" gutterBottom={true}>
-        Vierailtu {parkNote.visitedIn}
-      </Typography>
-      <Typography color='primary' variant='subtitle' component="div" >
-        Muistiinpanot
-      </Typography>
-      {parkNote.comments.length > 0
-        ? parkNote.comments.map(comment => <li key={comment._id}>{comment.comment}  ({new Date(comment.createdAt).toLocaleDateString('de-DE')})</li>)
-        : <Typography color='primary' variant='subtitle' component="div" >
-          Luo muistiinpano
-        </Typography>
-      }
-      <Typography color='primary' variant='subtitle' component="div" >
-        Käydyt reitit
-      </Typography>
-      {parkNote.routes.length > 0
-        ? parkNote.routes.map(route => <li key={route.id}>{route.name} </li>)
-        : <div></div>}
-      <Button key="addRoute" size='small'>
-        <AddBoxIcon sx={{ margin: 1 }} /> Lisää reitti
-      </Button>
-    </Box>
-
+    <VisitedParkDetails parkNote={parkNote} />
   )
-
 }
 
 export default UserNote
