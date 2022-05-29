@@ -2,7 +2,9 @@ import { Accordion, AccordionDetails, AccordionSummary, Box, Divider, Grid, Icon
 import AddBoxIcon from '@mui/icons-material/AddBox'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import EditIcon from '@mui/icons-material/Edit'
+import { useState } from 'react'
 import theme from '../../theme/theme'
+import AddCommentModal from './AddCommentModal'
 
 
 const containerStyle = {
@@ -59,7 +61,7 @@ const VisitedParkDetails = ({ parkNote }) => {
           }
         </AccordionSummary>
         <AccordionDetails>
-          <Comments comments={parkNote.comments} />
+          <Comments comments={parkNote.comments} parkNoteId={parkNote.id} />
         </AccordionDetails>
       </Accordion>
 
@@ -97,13 +99,15 @@ export default VisitedParkDetails
 
 
 
-const Comments = ({ comments }) => {
+const Comments = ({ comments, parkNoteId }) => {
+  const [open, setOpen] = useState(false)
   return (
     <Box>
       <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <IconButton aria-label='add' color='primary' key="addComment" onClick={() => { }}>
+        <IconButton aria-label='add' color='primary' key="addComment" onClick={() => { setOpen(true) }}>
           <AddBoxIcon />
         </IconButton>
+        <AddCommentModal parkNoteId={parkNoteId} open={open} setOpen={setOpen} />
       </Box>
       {comments.length === 0
         ? <Typography color='grey' variant='subtitle' component="div" >

@@ -83,18 +83,18 @@ visitedParkRouter.put('/comment/:id', async (request, response) => {
   }
 
   const oldVisitedPark = await VisitedPark.findById(request.params.id)
-  const updatedComments = oldVisitedPark.comments.concat(
-    { createdAt: new Date(), comment: comment }
-  )
+  const newComment = { createdAt: new Date(), comment: comment }
+
   try {
-    const updated = await VisitedPark.findOneAndUpdate(
-      request.params.id, { comments: updatedComments }, { new: true }
-    )
+    oldVisitedPark.comments.push(newComment)
+    await oldVisitedPark.save()
+    const updated = await VisitedPark.findById(request.params.id)
     response.json(updated)
   } catch {
-    console.log('error')
+    return response.status(500).json({
+      error: 'error while updating'
+    })
   }
-
 })
 
 module.exports = visitedParkRouter
