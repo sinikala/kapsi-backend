@@ -3,12 +3,9 @@ import { useSelector } from 'react-redux'
 //import { Card, CardContent, CardHeader, IconButton, Typography, } from '@mui/material'
 import { Box, Tab, Tabs, Typography } from '@mui/material'
 
-
-
 import theme from '../../theme/theme'
 import UserNote from './UserNotes'
 import ParkComments from './ParkReviews'
-
 
 
 const containerStyle = {
@@ -18,7 +15,6 @@ const containerStyle = {
   padding: 2,
   width: '100%'
 }
-
 
 
 const UserParkCard = () => {

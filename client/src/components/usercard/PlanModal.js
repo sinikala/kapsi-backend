@@ -56,7 +56,6 @@ const PlanModal = ({ open, setOpen, park }) => {
         </Typography>
         <PlanForm handleCancel={handleCancel} handleSave={handleSave} />
       </Box>
-
     </Modal>
   )
 }

@@ -22,7 +22,6 @@ const boxStyle = {
 }
 
 const VisitedParkDetails = ({ parkNote }) => {
-
   return (
     <Box sx={containerStyle}>
       <Accordion defaultExpanded={true} >
@@ -95,9 +94,6 @@ const VisitedParkDetails = ({ parkNote }) => {
   )
 }
 
-export default VisitedParkDetails
-
-
 
 const Comments = ({ comments, parkNoteId }) => {
   const [open, setOpen] = useState(false)
@@ -138,7 +134,6 @@ const Route = ({ route }) => {
   }
 
   return (
-
     <Accordion >
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
@@ -239,3 +234,4 @@ const Route = ({ route }) => {
   )
 }
 
+export default VisitedParkDetails
