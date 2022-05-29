@@ -31,10 +31,19 @@ const getPlannedParks = async (token) => {
 
 // POST
 
-export const savePlan = async (newPlan, token) => {
+export const createPlan = async (newPlan, token) => {
   const config = {
     headers: { Authorization: `bearer ${token}` }
   }
   const response = await axios.post(planBaseUrl, newPlan, config)
+  return response.data
+}
+
+
+export const createVisit = async (newVisit, token) => {
+  const config = {
+    headers: { Authorization: `bearer ${token}` }
+  }
+  const response = await axios.post(visitBaseUrl, newVisit, config)
   return response.data
 }

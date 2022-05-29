@@ -9,11 +9,14 @@ const visitedParksSlice = createSlice({
     setVisitedParks(state, action) {
       return action.payload
     },
+    addVisitedPark(state, action) {
+      return state.concat(action.payload)
+    },
     setVisitedParksNull() {
       return []
     }
   }
 })
 
-export const { setVisitedParks, setVisitedParksNull } = visitedParksSlice.actions
+export const { setVisitedParks, addVisitedPark, setVisitedParksNull } = visitedParksSlice.actions
 export default visitedParksSlice.reducer

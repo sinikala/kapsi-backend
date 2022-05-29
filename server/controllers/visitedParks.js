@@ -6,7 +6,6 @@ const tokenIsValid = require('./tokenHelper')
 
 visitedParkRouter.get('/', async (request, response) => {
   let decodedToken = ''
-
   try {
     decodedToken = tokenIsValid(request)
     if (!decodedToken.id) {
@@ -29,10 +28,10 @@ visitedParkRouter.get('/', async (request, response) => {
 })
 
 
+// new visited park
 visitedParkRouter.post('/', async (request, response) => {
   const { parkId, visitedIn, comment } = request.body
   let decodedToken = ''
-
   try {
     decodedToken = tokenIsValid(request)
     if (!decodedToken.id) {
@@ -46,27 +45,28 @@ visitedParkRouter.post('/', async (request, response) => {
     })
   }
 
-
   const user = await User.findById(decodedToken.id)
-
   const newVisitedPark = new VisitedPark({
     park: parkId,
     visitedIn,
     createdAt: new Date(),
-    comments: [{ createdAt: new Date(), comment: comment }],
     user: user._id
   })
+
+  if (comment) {
+    newVisitedPark.comments = [{ createdAt: new Date(), comment: comment }]
+  }
 
   const savedVisitedPark = await newVisitedPark.save()
   user.visitedParks = user.visitedParks.concat(savedVisitedPark._id)
   await user.save()
-
   response.status(201).json(savedVisitedPark)
 })
 
+
+// Add new comment to visited park
 visitedParkRouter.put('/comment/:id', async (request, response) => {
   const { comment } = request.body
-
   let decodedToken = ''
 
   try {

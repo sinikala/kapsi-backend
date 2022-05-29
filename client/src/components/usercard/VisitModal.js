@@ -1,4 +1,8 @@
+import { useSelector, useDispatch } from 'react-redux'
 import { Box, Modal, Typography } from '@mui/material'
+import VisitForm from './VisitForm'
+import { createVisit } from '../../services/userParkService'
+import { addVisitedPark } from '../../state/visitedParks'
 
 const style = {
   position: 'absolute',
@@ -14,21 +18,44 @@ const style = {
 
 
 const VisitModal = ({ open, setOpen, park }) => {
+  const dispatch = useDispatch()
+  const user = useSelector(state => state.user)
+
+  const handleClose = (event, reason) => {
+    if (reason && reason !== 'backdropClick') {
+      setOpen(false)
+    }
+  }
+
+  const handleSave = async (values) => {
+    const parkVisit = await createVisit({
+      visitedIn: values.visitedIn,
+      comment: values.comment,
+      parkId: park.id
+    }, user.token)
+    dispatch(addVisitedPark(parkVisit))
+    setOpen(false)
+  }
+
+  const handleCancel = () => {
+    setOpen(false)
+  }
 
   return (
     <Modal
       open={open}
-      onClose={() => { setOpen(false) }}
+      onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
         <Typography id="modal-modal-title" variant="h6" component="h2">
-          Text in a modal {park.label}
+          {park.label}
         </Typography>
-        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+        <Typography id="modal-modal-description" sx={{ mt: 2 }} gutterBottom={true}>
+          Luo muistiinpano puistovierailustasi
         </Typography>
+        <VisitForm handleCancel={handleCancel} handleSave={handleSave} />
       </Box>
     </Modal>
   )
