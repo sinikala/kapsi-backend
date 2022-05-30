@@ -1,8 +1,8 @@
 import { Box, Modal, Typography } from '@mui/material'
 import { useSelector, useDispatch } from 'react-redux'
-import PlanForm from './PlanForm'
 import { createPlan } from '../../services/userParkService'
 import { addPlannedPark } from '../../state/plannedParks'
+import CommentForm from './CommentForm'
 
 const style = {
   position: 'absolute',
@@ -54,7 +54,7 @@ const PlanModal = ({ open, setOpen, park }) => {
         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
           Kirjaa tähän suunnitelmiasi, kuulemiasi vinkkejä tai muuta vastaavaa ensimmäistä puistokäyntiäsi odotellessa.
         </Typography>
-        <PlanForm handleCancel={handleCancel} handleSave={handleSave} />
+        <CommentForm handleCancel={handleCancel} handleSave={handleSave} />
       </Box>
     </Modal>
   )
