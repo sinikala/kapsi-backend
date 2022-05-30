@@ -20,11 +20,19 @@ const visitedParksSlice = createSlice({
         note.comments = action.payload.comments
       }
     },
+    addVisitedParkRoute(state, action) {
+      console.log('reducer payload', action.payload.id)
+      const note = state.find((note) => note.id === action.payload.id)
+      if (note) {
+        console.log('reducer', note)
+        note.routes = note.routes.concat(action.payload.route)
+      }
+    },
     setVisitedParksNull() {
       return []
     }
   }
 })
 
-export const { setVisitedParks, addVisitedPark, addVisitedParkComment, setVisitedParksNull } = visitedParksSlice.actions
+export const { setVisitedParks, addVisitedPark, addVisitedParkComment, addVisitedParkRoute, setVisitedParksNull } = visitedParksSlice.actions
 export default visitedParksSlice.reducer

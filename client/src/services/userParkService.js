@@ -1,6 +1,7 @@
 import axios from 'axios'
 const visitBaseUrl = '/api/visitedParks'
 const planBaseUrl = '/api/plannedParks'
+const routesBaseUrl = '/api/routes'
 
 
 // GET
@@ -49,6 +50,14 @@ export const createVisit = async (newVisit, token) => {
   return response.data
 }
 
+
+export const createRoute = async (route, token) => {
+  const config = {
+    headers: { Authorization: `bearer ${token}` }
+  }
+  const response = await axios.post(routesBaseUrl, route, config)
+  return response.data
+}
 
 // PUT
 

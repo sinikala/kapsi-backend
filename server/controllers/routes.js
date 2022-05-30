@@ -26,7 +26,7 @@ routeRouter.get('/:parkId', async (request, response) => {
   response.json(routes)
 })
 
-
+// create new route
 routeRouter.post('/', async (request, response) => {
   const { name, length, duration, visitedIn, difficulty,
     scenery, facilities, comment, visitedParkId, parkId } = request.body
@@ -65,6 +65,7 @@ routeRouter.post('/', async (request, response) => {
   visitedPark.routes = visitedPark.routes.concat(savedRoute._id)
   await visitedPark.save()
 
+  //const updated = await VisitedPark.findById(request.params.id)
   response.status(201).json(savedRoute)
 
 })

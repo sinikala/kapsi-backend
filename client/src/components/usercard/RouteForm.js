@@ -13,17 +13,26 @@ const validationSchema = yup.object().shape({
   len:
     yup
       .number()
+      .transform((_value, originalValue) => Number(originalValue.replace(/,/, '.')))
       .min(0, 'Reitin pituus ei voi olla negatiivinen')
-      .typeError('Ilmoita pituus numerona (kilometreissä)'),
+      .typeError('Ilmoita pituus numeroina (kilometreissä)')
+      .required('Ilmoita reitin pituus (km)'),
   duration:
     yup
       .number()
+      .transform((_value, originalValue) => Number(originalValue.replace(/,/, '.')))
       .min(0, 'Reitin kesto ei voi olla negatiivinen')
       .typeError('Ilmoita kesto numerona (tuntia)'),
   visitedIn:
     yup
       .string(),
   difficulty:
+    yup
+      .string(),
+  scenery:
+    yup
+      .string(),
+  facilities:
     yup
       .string(),
   comment:
@@ -70,7 +79,9 @@ const RouteForm = ({ handleCancel, handleSave }) => {
       len: '',
       duration: '',
       visitedIn: '',
-      difficulty: '0',
+      difficulty: 0,
+      scenery: 0,
+      facilities: 0,
       comment: '',
     },
     validationSchema: validationSchema,
@@ -137,8 +148,28 @@ const RouteForm = ({ handleCancel, handleSave }) => {
         <Rating
           id='difficulty'
           name='difficulty'
-          label='Haastavuus'
           value={formik.values.difficulty}
+          onChange={formik.handleChange}
+          {...ratingStyle}
+        />
+      </Box>
+      <Box sx={ratingBoxStyle}>
+        <Typography component='label'> Maisemat</Typography>
+        <Rating
+          id='scenery'
+          name='scenery'
+          value={formik.values.scenery}
+          onChange={formik.handleChange}
+          {...ratingStyle}
+        />
+      </Box>
+      <Box sx={ratingBoxStyle}>
+        <Typography component='label'> Fasiliteetit</Typography>
+        <Rating
+          id='facilities'
+          name='facilities'
+          label='Haastavuus'
+          value={formik.values.facilities}
           onChange={formik.handleChange}
           {...ratingStyle}
         />
