@@ -15,8 +15,9 @@
 | 27.5.| 7,5   | Revamp of database schema and related functions. Front end refactoring. e2e creation and viewing of park plans. Initial display for visited park notes and routes|
 | 28.5.| 5    |  Display of visited park details: comments and routes. Server-side function for adding a visited park comments. |
 | 29.5.| 6,5  | Fix data persistance issue, functions for marking park visited and adding comments. General refactoring. Fight with forms and slice state control.|
+| 30.5.| 4,5  | Complete visited park addition and route creation, and display |
 ||||
-| total| 63  | |
+| total| 67,5  | |
 
 
 
