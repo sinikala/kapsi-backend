@@ -64,10 +64,7 @@ routeRouter.post('/', async (request, response) => {
   const savedRoute = await newRoute.save()
   visitedPark.routes = visitedPark.routes.concat(savedRoute._id)
   await visitedPark.save()
-
-  //const updated = await VisitedPark.findById(request.params.id)
   response.status(201).json(savedRoute)
-
 })
 
 

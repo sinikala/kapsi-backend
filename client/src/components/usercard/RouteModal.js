@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import { useSelector, useDispatch } from 'react-redux'
 import { Box, Modal, Typography } from '@mui/material'
 import RouteForm from './RouteForm'
@@ -32,8 +31,6 @@ const RouteModal = ({ open, setOpen, parkNoteId }) => {
   }
 
   const handleSave = async (values) => {
-    //luvut tulevat stringinä
-
     const newRoute = await createRoute({
       name: values.name,
       length: values.len ? parseFloat(values.len.replace(',', '.')) : '',
@@ -47,10 +44,7 @@ const RouteModal = ({ open, setOpen, parkNoteId }) => {
       visitedParkId: parkNoteId
     }, user.token)
 
-    console.log(values)
-    console.log('new', newRoute)
     dispatch(addVisitedParkRoute({ id: parkNoteId, route: newRoute }))
-
     setOpen(false)
   }
 

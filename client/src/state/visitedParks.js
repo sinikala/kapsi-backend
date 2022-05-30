@@ -21,10 +21,8 @@ const visitedParksSlice = createSlice({
       }
     },
     addVisitedParkRoute(state, action) {
-      console.log('reducer payload', action.payload.id)
       const note = state.find((note) => note.id === action.payload.id)
       if (note) {
-        console.log('reducer', note)
         note.routes = note.routes.concat(action.payload.route)
       }
     },

@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import { useFormik, } from 'formik'
 import { Box, Button, Rating, TextField, InputAdornment, Typography } from '@mui/material'
 import * as yup from 'yup'
