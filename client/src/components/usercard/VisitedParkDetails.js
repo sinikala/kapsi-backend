@@ -5,6 +5,7 @@ import EditIcon from '@mui/icons-material/Edit'
 import { useState } from 'react'
 import theme from '../../theme/theme'
 import AddCommentModal from './AddCommentModal'
+import RouteModal from './RouteModal'
 
 
 const containerStyle = {
@@ -22,6 +23,7 @@ const boxStyle = {
 }
 
 const VisitedParkDetails = ({ parkNote }) => {
+  const [open, setOpen] = useState(false)
   return (
     <Box sx={containerStyle}>
       <Accordion defaultExpanded={true} >
@@ -84,6 +86,12 @@ const VisitedParkDetails = ({ parkNote }) => {
         </AccordionSummary>
         <AccordionDetails>
           <Box sx={containerStyle}>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <IconButton aria-label='add' color='primary' key="addRoute" onClick={() => { setOpen(true) }}>
+                <AddBoxIcon />
+              </IconButton>
+              <RouteModal parkNoteId={parkNote.id} open={open} setOpen={setOpen} />
+            </Box>
             {parkNote.routes.map(route =>
               <Route route={route} key={route.id} />
             )}
