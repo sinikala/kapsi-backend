@@ -39,7 +39,7 @@ app.use('/api/reviews', reviewRouter)
 app.use('/api/routes', routeRouter)
 
 if (process.env.NODE_ENV === 'test') {
-  const testingRouter = require('./controllers/test')
+  const testingRouter = require('./controllers/testController')
   app.use('/api/testing', testingRouter)
 }
 

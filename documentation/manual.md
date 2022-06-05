@@ -43,7 +43,8 @@ Open ```http://localhost:3000``` to view the client in your browser.
   - [alternative] in previous step, run ```npm run cypress:open``` to start the cypress graphical interface and  manually run wanted tests from there
 
 - client unit tests
-  - in ```/client``` run ```npm run test```
+  - in ```/client``` run ```CI=true npm test```
 
 - server integration tests
+  - in root start server with ```npm run start:test```
   - in root run ```npm run test```
