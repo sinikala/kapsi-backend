@@ -23,6 +23,9 @@ jobs:
       - name: lint
         run: npm run lint
 
+      - name: build
+        run: npm run build:ui
+
       - name: client unit tests
         run: npm run test:client
 
