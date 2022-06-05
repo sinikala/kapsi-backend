@@ -47,4 +47,4 @@ Open ```http://localhost:3000``` to view the client in your browser.
 
 - server integration tests
   - in root start server with ```npm run start:test```
-  - in root run ```npm run test```
+  - in root run ```npm run test:server```

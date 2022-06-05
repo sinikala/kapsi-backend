@@ -9,6 +9,18 @@ on:
     types: [opened, synchronize]
 
 jobs:
+  start_client:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+        
+      - name: npm install
+        run: cd client && npm install
+
+
   deployment_pipeline:
     runs-on: ubuntu-20.04
     steps:
@@ -18,7 +30,7 @@ jobs:
           node-version: '16'
 
       - name: npm install
-        run: npm install && cd client && npm install
+        run: npm install #&& cd client && npm install
 
       - name: lint
         run: npm run lint
@@ -28,4 +40,11 @@ jobs:
 
       - name: client unit tests
         run: npm run test:client
+
+      # - name: e2e tests
+      #   uses: cypress-io/github-action@v2
+      #   with:
+      #     command: npm run test:e2e
+      #     start: npm run start-prod
+      #     wait-on: http://localhost:5000
 
