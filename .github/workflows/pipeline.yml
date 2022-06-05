@@ -8,6 +8,9 @@ on:
     branches: [main]
     types: [opened, synchronize]
 
+env: 
+  TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
+
 jobs:
   deployment_pipeline:
     runs-on: ubuntu-20.04
@@ -30,8 +33,6 @@ jobs:
       #   run: npm run test:client
 
       - name: start test server
-        env: 
-          TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
         run: npm run start:test &
         
       - name: test server

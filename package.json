@@ -13,6 +13,7 @@
     "test:server": "cross-env NODE_ENV=test jest --verbose --runInBand --forceExit ./server",
     "test:client": "cd client && CI=true npm test",
     "start:test": "cross-env NODE_ENV=test node server/index.js",
+    "start:client": "cd client && npm start",
     "lint": "eslint './**/*.js'"
   },
   "repository": {
