@@ -24,6 +24,5 @@ jobs:
         run: npm run lint
 
       - name: client unit tests
-        run: cd client/
-        run: CI=true npm test
+        run: cd client/ && CI=true npm test
 
