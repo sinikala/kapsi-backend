@@ -25,25 +25,25 @@ jobs:
       - name: npm install
         run: npm install && cd client && npm install
 
-      # - name: lint
-      #   run: npm run lint
+      - name: lint
+        run: npm run lint
 
-      # - name: build
-      #   run: npm run build:ui
+      - name: build
+        run: npm run build:ui
 
-      # - name: client unit tests
-      #   run: npm run test:client
+      - name: client unit tests
+        run: npm run test:client
 
-      # - name: start test server
-      #   run: npm run start:test &
+      - name: start test server
+        run: npm run start:test &
         
-      # - name: test server
-      #   run: npm run test:server
+      - name: test server
+        run: npm run test:server
 
-      - name: e2e tests
-        uses: cypress-io/github-action@v2
-        with:
-          command: npm run test:e2e
-          start: npm run start:test, npm run start:client
-          wait-on: http://localhost:3000
+      # - name: e2e tests
+      #   uses: cypress-io/github-action@v2
+      #   with:
+      #     command: npm run test:e2e
+      #     start: npm run start:test, npm run start:client
+      #     wait-on: http://localhost:3000
 
