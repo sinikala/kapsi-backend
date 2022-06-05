@@ -29,13 +29,13 @@ jobs:
       # - name: client unit tests
       #   run: npm run test:client
 
-      - name: test server
+      - name: start test server
         env: 
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
-        uses: BerniWittmann/background-server-action@latest
-        with:
-          command: npm run test:server
-          start: npm run start:test
+        run: npm run start:test &
+        
+      - name: test server
+        run: npm run test:server
 
 
       # - name: server tests
