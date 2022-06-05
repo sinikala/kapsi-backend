@@ -27,7 +27,3 @@ jobs:
         run: cd client/
         run: CI=true npm test
 
-      - name: server integration tests
-        run: cd ..
-        run: npm run start:test
-        run: npm test
