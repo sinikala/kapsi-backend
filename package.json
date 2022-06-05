@@ -12,7 +12,7 @@
     "logs:prod": "heroku logs --tail",
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand --forceExit",
     "start:test": "cross-env NODE_ENV=test node server/index.js",
-    "lint": "eslint ./server"
+    "lint": "eslint './**/*.js'"
   },
   "repository": {
     "type": "git",
