@@ -32,8 +32,9 @@ jobs:
       - name: test server
         env: 
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
-        run: npm run test:server
+        uses: BerniWittmann/background-server-action@v1
         with:
+          command: npm run test:server
           start: npm run start:test
 
 
