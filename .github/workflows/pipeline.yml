@@ -30,6 +30,8 @@ jobs:
         run: npm run test:client
 
       - name: start test server
+        env: 
+          TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
         run: npm run start:test
 
       - name: server tests
