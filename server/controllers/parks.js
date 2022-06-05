@@ -34,7 +34,7 @@ Park.estimatedDocumentCount().then(count => {
     logger.info('No park data found. Seeding the database.')
     data.map(park => {
       const p = new Park(park)
-      p.save().then(savedPark => { })//console.log(savedPark.label))
+      p.save().then(() => { })
     })
     logger.info('Database ready.')
   }
