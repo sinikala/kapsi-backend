@@ -12,7 +12,7 @@
     "logs:prod": "heroku logs --tail",
     "start:test": "cross-env NODE_ENV=test node server/index.js",
     "start:client": "cd client && npm start",
-    "test:e2e": "cd client && test:e2e",
+    "test:e2e": "cd client && npm run test:e2e",
     "test:server": "cross-env NODE_ENV=test jest --verbose --runInBand --forceExit ./server",
     "test:client": "cd client && CI=true npm test",
     "lint": "eslint './**/*.js'"
