@@ -3,7 +3,7 @@ import '@testing-library/jest-dom/extend-expect'
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
-import SignUpForm from '../components/SignUpForm'
+import SignUpForm from '../components/authorization/SignUpForm'
 
 
 test('renders correct details', () => {
