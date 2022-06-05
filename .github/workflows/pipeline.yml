@@ -26,7 +26,6 @@ jobs:
       - name: build
         run: npm run build:ui
 
-      # - name: client unit tests
-      #   run: npm run test:client
-      #   working-directory: client
+      - name: client unit tests
+        run: npm run test:client
 
