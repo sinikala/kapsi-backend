@@ -10,6 +10,8 @@ on:
 
 env: 
   TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
+  SECRET: ${{ secrets.SECRET }}
+  PORT: ${{ secrets.PORT }}
 
 jobs:
   deployment_pipeline:
