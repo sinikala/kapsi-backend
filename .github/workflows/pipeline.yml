@@ -29,13 +29,16 @@ jobs:
       - name: client unit tests
         run: npm run test:client
 
-      - name: start test server
+      - name: test server
         env: 
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
-        run: npm run start:test
+        run: npm run test:server
+        with:
+          start: npm run start:test
 
-      - name: server tests
-        run: npm test:server
+
+      # - name: server tests
+      #   run: npm run test:server
 
       # - name: e2e tests
       #   uses: cypress-io/github-action@v2
