@@ -18,14 +18,15 @@ jobs:
           node-version: '16'
 
       - name: npm install
-        run: npm install
+        run: npm install && cd client && npm install
 
       - name: lint
         run: npm run lint
 
-      - name: build
-        run: npm run build:ui
+      # - name: build
+      #   run: npm run build:ui
 
-      - name: client unit tests
-        run: npm run test:client
+      # - name: client unit tests
+      #   run: npm run test:client
+      #   working-directory: client
 
