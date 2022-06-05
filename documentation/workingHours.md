@@ -16,8 +16,8 @@
 | 28.5.| 5    |  Display of visited park details: comments and routes. Server-side function for adding a visited park comments. |
 | 29.5.| 6,5  | Fix data persistance issue, functions for marking park visited and adding comments. General refactoring. Fight with forms and slice state control.|
 | 30.5.| 4,5  | Complete visited park addition and route creation, and display |
-||||
-| total| 67,5  | |
+| 5.6. | 3,5 | Start implementing CI/CD pipeline with GitHub Actions |
+| total| 71  | |
 
 
 
