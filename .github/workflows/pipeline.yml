@@ -20,19 +20,19 @@ jobs:
       - name: npm install
         run: npm install && cd client && npm install
 
-      - name: lint
-        run: npm run lint
+      # - name: lint
+      #   run: npm run lint
 
-      - name: build
-        run: npm run build:ui
+      # - name: build
+      #   run: npm run build:ui
 
-      - name: client unit tests
-        run: npm run test:client
+      # - name: client unit tests
+      #   run: npm run test:client
 
       - name: test server
         env: 
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
-        uses: BerniWittmann/background-server-action@v1
+        uses: BerniWittmann/background-server-action@latest
         with:
           command: npm run test:server
           start: npm run start:test
