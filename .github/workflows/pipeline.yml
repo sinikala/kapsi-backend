@@ -47,6 +47,11 @@ jobs:
           #command: npm run test:e2e
           #start: npm run start:test #, npm run start:client
           #wait-on: 'http://localhost:3000'
+      # - name: start server
+      #   run: npm run start:test
+
+      - name: start client
+        run: npm run start:client &
 
       - name: e2e tests
         run: npm run test:e2e
