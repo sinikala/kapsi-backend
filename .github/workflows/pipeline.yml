@@ -31,8 +31,8 @@ jobs:
       - name: build
         run: npm run build:ui
 
-      - name: client unit tests
-        run: npm run test:client
+      # - name: client unit tests
+      #   run: npm run test:client
 
       - name: start test server
         run: npm run start:test &
@@ -50,8 +50,8 @@ jobs:
       # - name: start server
       #   run: npm run start:test
 
-      # - name: start client
-      #   run: npm run start:client &
+      - name: start client
+        run: npm run start:client &
 
       # - name: e2e tests
       #   run: npm run test:e2e
