@@ -38,7 +38,7 @@ Open ```http://localhost:3000``` to view the client in your browser.
 
 - 2e2 (cypress):
   - in root start server with ```npm run start:test```
-  - in ```client/``` start client with ```npm start```
+  - in ```client/``` start client with ```npm run start:test```
   - in ```client/``` run tests with ```npm run test:e2e```
   - [alternative] in previous step, run ```npm run cypress:open``` to start the cypress graphical interface and  manually run wanted tests from there
 
