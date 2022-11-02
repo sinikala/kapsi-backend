@@ -14,7 +14,7 @@ env:
   PORT: ${{ secrets.PORT }}
 
 jobs:
-  deployment_pipeline:
+  tests:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
@@ -37,21 +37,11 @@ jobs:
       - name: start server
         run: npm run start:test &
 
-      - name: server integration tests
-        run: npm run test:server
-
       - name: start client
         run: cd client && npm run start:test &
 
       - name: e2e tests
         run: npm run test:e2e
-
-      # - name: e2e tests
-      #   uses: cypress-io/github-action@v4
-      #   with:
-      #     browser: chrome
-      #     working-directory: ./client
-
 
       - uses: actions/upload-artifact@v2
         if: failure()
@@ -59,16 +49,10 @@ jobs:
           name: cypress-screenshots
           path: client/cypress/screenshots
 
+        # These after e2e because integrations tests empty the testdb parks at the end
+        # optimize this
+      - name: server integration tests
+        run: npm run test:server
 
-      
-
-      # - name: e2e tests
-      #   uses: cypress-io/github-action@v4
-      #   with:
-      #     spec: ./client/cypress/integration/*
-          #command: npm run test:e2e
-          #start: npm run start:test #, npm run start:client
-          #wait-on: 'http://localhost:3000'
-      
       # do skip option
 
