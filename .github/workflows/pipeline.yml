@@ -14,7 +14,7 @@ env:
   PORT: ${{ secrets.PORT }}
 
 jobs:
-  pipeline:
+  kapsi_pipeline:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
