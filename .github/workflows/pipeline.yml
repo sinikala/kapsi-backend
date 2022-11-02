@@ -31,6 +31,13 @@ jobs:
       - name: build
         run: npm run build:ui
 
+      - name: start client
+        run: npm run start:client &
+
+      - name: e2e tests
+        run: npm run test:e2e
+
+
       # - name: client unit tests
       #   run: npm run test:client
 
@@ -50,16 +57,16 @@ jobs:
       # - name: start server
       #   run: npm run start:test
 
-      - name: start client
-        run: npm run start:client &
+      # - name: start client
+      #   run: npm run start:client &
 
-      # - name: e2e tests
-      #   run: npm run test:e2e
-      # - name: is server running
-      #   run: curl http://localhost:3001 -I
+      # # - name: e2e tests
+      # #   run: npm run test:e2e
+      # # - name: is server running
+      # #   run: curl http://localhost:3001 -I
 
-      - name: is client running
-        run: curl http://localhost:3000
+      # - name: is client running
+      #   run: curl http://localhost:3000
 
       # do skip option
 
