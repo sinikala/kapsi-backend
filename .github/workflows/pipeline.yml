@@ -43,11 +43,17 @@ jobs:
       - name: e2e tests
         run: npm run test:e2e
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         if: failure()
         with:
-          name: cypress-screenshots
+          name: Cypress screenshots
           path: client/cypress/screenshots
+
+      - uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: Cypress videos
+          path: client/cypress/videos
 
         # These after e2e because integrations tests empty the testdb parks at the end
         # optimize this

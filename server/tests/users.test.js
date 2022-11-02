@@ -37,7 +37,7 @@ describe('User creation', () => {
 
     const usernames = usersAtEnd.map(u => u.username)
     expect(usernames).toContain(newUser.username)
-  })
+  }, 10000)
 
   test('fails with proper statuscode and message if username already taken', async () => {
     const usersAtStart = await helper.usersInDb()
