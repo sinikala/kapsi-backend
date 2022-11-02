@@ -31,9 +31,14 @@ jobs:
       - name: build
         run: npm run build:ui
 
+      - name: client unit tests
+        run: npm run test:client
 
-      - name: start test server
+      - name: start server
         run: npm run start:test &
+
+      - name: server integration tests
+        run: npm run test:server
 
       - name: start client
         run: cd client && npm run start:test &
