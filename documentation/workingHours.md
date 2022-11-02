@@ -17,7 +17,8 @@
 | 29.5.| 6,5  | Fix data persistance issue, functions for marking park visited and adding comments. General refactoring. Fight with forms and slice state control.|
 | 30.5.| 4,5  | Complete visited park addition and route creation, and display |
 | 5.6. | 3,5 | Start implementing CI/CD pipeline with GitHub Actions |
-| total| 71  | |
+| 2.11. | 7,5 | Work on GitHub Actions CI/CD pipeline |
+| total| 78,5  | |
 
 
 
