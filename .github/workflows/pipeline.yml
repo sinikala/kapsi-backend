@@ -31,34 +31,43 @@ jobs:
       - name: build
         run: npm run build:ui
 
-      - name: client unit tests
-        run: npm run test:client
+      # - name: client unit tests
+      #   run: npm run test:client
 
-      - name: start server
-        run: npm run start:test &
+      # - name: start server
+      #   run: npm run start:test &
 
-      - name: start client
-        run: cd client && npm run start:test &
+      # - name: start client
+      #   run: cd client && npm run start:test &
 
-      - name: e2e tests
-        run: npm run test:e2e
+      # - name: e2e tests
+      #   run: npm run test:e2e
 
-      - uses: actions/upload-artifact@v3
-        if: failure()
+      # - uses: actions/upload-artifact@v3
+      #   if: failure()
+      #   with:
+      #     name: Cypress screenshots
+      #     path: client/cypress/screenshots
+
+      # - uses: actions/upload-artifact@v3
+      #   if: failure()
+      #   with:
+      #     name: Cypress videos
+      #     path: client/cypress/videos
+
+      #   # These after e2e because integrations tests empty the testdb parks at the end
+      #   # optimize this
+      # - name: server integration tests
+      #   run: npm run test:server
+
+      - name: deploy to Heroku
+        if: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '#deploy') }}
+        uses: akhileshns/heroku-deploy@v3.12.12
         with:
-          name: Cypress screenshots
-          path: client/cypress/screenshots
-
-      - uses: actions/upload-artifact@v3
-        if: failure()
-        with:
-          name: Cypress videos
-          path: client/cypress/videos
-
-        # These after e2e because integrations tests empty the testdb parks at the end
-        # optimize this
-      - name: server integration tests
-        run: npm run test:server
-
-      # do skip option
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "kapsi"
+          heroku_email: "${{secrets.HEROKU_EMAIL}}"
+          healthcheck: "https://kapsi.herokuapp.com/api/health"
+          checkstring: "ok"
+          rollbackonhealthcheckfailed: true
 
