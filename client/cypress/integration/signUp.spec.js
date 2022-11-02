@@ -3,7 +3,7 @@ describe('User', function () {
     cy.createUser()
   })
   beforeEach(function () {
-    cy.visit('http://localhost:3000/signup')
+    cy.visit('http://localhost:8000/signup')
   })
 
 

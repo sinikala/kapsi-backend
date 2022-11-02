@@ -3,7 +3,7 @@ describe('User', function () {
     cy.createUser()
   })
   beforeEach(function () {
-    cy.visit('http://localhost:3000/login')
+    cy.visit('http://localhost:8000/login')
   })
 
   it('can find user creation from login page', function () {
