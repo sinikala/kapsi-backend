@@ -43,18 +43,24 @@ jobs:
       - name: start client
         run: cd client && npm run start:test &
 
+      # - name: e2e tests
+      #   run: npm run test:e2e
+
       - name: e2e tests
-        run: npm run test:e2e
+        uses: cypress-io/github-action@v4
+        with:
+          browser: chrome
+          project: ./client
 
 
-      # - name: client unit tests
-      #   run: npm run test:client
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
 
-      # - name: start test server
-      #   run: npm run start:test &
-        
-      # - name: test server
-      #   run: npm run test:server
+
+      
 
       # - name: e2e tests
       #   uses: cypress-io/github-action@v4
@@ -63,19 +69,6 @@ jobs:
           #command: npm run test:e2e
           #start: npm run start:test #, npm run start:client
           #wait-on: 'http://localhost:3000'
-      # - name: start server
-      #   run: npm run start:test
-
-      # - name: start client
-      #   run: npm run start:client &
-
-      # # - name: e2e tests
-      # #   run: npm run test:e2e
-      # # - name: is server running
-      # #   run: curl http://localhost:3001 -I
-
-      # - name: is client running
-      #   run: curl http://localhost:3000
-
+      
       # do skip option
 
