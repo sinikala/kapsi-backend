@@ -43,21 +43,21 @@ jobs:
       - name: start client
         run: cd client && npm run start:test &
 
-      # - name: e2e tests
-      #   run: npm run test:e2e
-
       - name: e2e tests
-        uses: cypress-io/github-action@v4
-        with:
-          browser: chrome
-          working-directory: ./client
+        run: npm run test:e2e
+
+      # - name: e2e tests
+      #   uses: cypress-io/github-action@v4
+      #   with:
+      #     browser: chrome
+      #     working-directory: ./client
 
 
       - uses: actions/upload-artifact@v2
         if: failure()
         with:
           name: cypress-screenshots
-          path: cypress/screenshots
+          path: client/cypress/screenshots
 
 
       
