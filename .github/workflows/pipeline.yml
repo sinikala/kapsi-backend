@@ -40,14 +40,16 @@ jobs:
       - name: test server
         run: npm run test:server
 
-      - name: e2e tests
-        uses: cypress-io/github-action@v4
-        with:
-          spec: ./client/cypress/integration/*
+      # - name: e2e tests
+      #   uses: cypress-io/github-action@v4
+      #   with:
+      #     spec: ./client/cypress/integration/*
           #command: npm run test:e2e
           #start: npm run start:test #, npm run start:client
           #wait-on: 'http://localhost:3000'
 
+      - name: e2e tests
+        run: npm run test:e2e
 
       # do skip option
 
