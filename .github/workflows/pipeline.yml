@@ -14,7 +14,7 @@ env:
   PORT: ${{ secrets.PORT }}
 
 jobs:
-  tests:
+  pipeline:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
@@ -31,34 +31,34 @@ jobs:
       - name: build
         run: npm run build:ui
 
-      # - name: client unit tests
-      #   run: npm run test:client
+      - name: client unit tests
+        run: npm run test:client
 
-      # - name: start server
-      #   run: npm run start:test &
+      - name: start server
+        run: npm run start:test &
 
-      # - name: start client
-      #   run: cd client && npm run start:test &
+      - name: start client
+        run: cd client && npm run start:test &
 
-      # - name: e2e tests
-      #   run: npm run test:e2e
+      - name: e2e tests
+        run: npm run test:e2e
 
-      # - uses: actions/upload-artifact@v3
-      #   if: failure()
-      #   with:
-      #     name: Cypress screenshots
-      #     path: client/cypress/screenshots
+      - uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: Cypress screenshots
+          path: client/cypress/screenshots
 
-      # - uses: actions/upload-artifact@v3
-      #   if: failure()
-      #   with:
-      #     name: Cypress videos
-      #     path: client/cypress/videos
+      - uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: Cypress videos
+          path: client/cypress/videos
 
-      #   # These after e2e because integrations tests empty the testdb parks at the end
-      #   # optimize this
-      # - name: server integration tests
-      #   run: npm run test:server
+        # These after e2e because integrations tests empty the testdb parks at the end
+        # optimize this
+      - name: server integration tests
+        run: npm run test:server
 
       - name: deploy to Heroku
         if: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '#deploy') }}
