@@ -60,14 +60,14 @@ jobs:
       - name: server integration tests
         run: npm run test:server
 
-      - name: deploy to Heroku
-        if: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '#deploy') }}
-        uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "kapsi"
-          heroku_email: "${{secrets.HEROKU_EMAIL}}"
-          healthcheck: "https://kapsi.herokuapp.com/api/health"
-          checkstring: "ok"
-          rollbackonhealthcheckfailed: true
+      #- name: deploy to Heroku
+      #  if: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '#deploy') }}
+      #  uses: akhileshns/heroku-deploy@v3.12.12
+      #  with:
+      #    heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+      #    heroku_app_name: "kapsi"
+      #    heroku_email: "${{secrets.HEROKU_EMAIL}}"
+      #    healthcheck: "https://kapsi.herokuapp.com/api/health"
+      #    checkstring: "ok"
+      #    rollbackonhealthcheckfailed: true
 
