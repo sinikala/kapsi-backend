@@ -3,7 +3,8 @@
 Kapsi national park app is a tool for all national park enthusiasts.
 With this app you can research Finnish national parks, plan your trips, make notes of past trips and more! Kapsi displays all parks on an interactive map, making browsing and pinpointing them easy.
 
-## [Kapsi is online!](https://kapsi.herokuapp.com/)
+## Kapsi is ~~online~~ offline!
+Due to end of free Heroku options, Kapsi is down for the moment and looking for a new home.
 
 
 [Work hours](./documentation/workingHours.md)
